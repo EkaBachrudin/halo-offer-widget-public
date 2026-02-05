@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Premium Services Widget</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="widget-container">
+        <div class="widget-bg"></div>
+
+        <div class="widget-content">
+            <!-- Title -->
+            <h1 class="widget-title">Pilih Layanan Digital Premium Kamu</h1>
+
+            <!-- Category Tabs -->
+            <div class="category-tabs">
+                <div class="tab-item active" data-tab="video">
+                    <div class="tab-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M18 15L34 24L18 33V15Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="tab-label">Video</span>
+                    <div class="tab-indicator"></div>
+                </div>
+                <div class="tab-item" data-tab="games">
+                    <div class="tab-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M20 18H28M20 24H26M20 30H24" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                            <rect x="14" y="14" width="20" height="20" rx="4" stroke="white" stroke-width="3"/>
+                        </svg>
+                    </div>
+                    <span class="tab-label">Games</span>
+                    <div class="tab-indicator"></div>
+                </div>
+                <div class="tab-item" data-tab="music">
+                    <div class="tab-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.2)"/>
+                            <path d="M19 34C19 36.2091 17.2091 38 15 38C12.7909 38 11 36.2091 11 34C11 31.7909 12.7909 30 15 30C17.2091 30 19 31.7909 19 34Z" stroke="white" stroke-width="3"/>
+                            <path d="M35 30C35 32.2091 33.2091 34 31 34C28.7909 34 27 32.2091 27 30C27 27.7909 28.7909 26 31 26C33.2091 26 35 27.7909 35 30Z" stroke="white" stroke-width="3"/>
+                            <path d="M19 34V16L35 12V30" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <span class="tab-label">Music</span>
+                    <div class="tab-indicator"></div>
+                </div>
+                <div class="tab-item" data-tab="others">
+                    <div class="tab-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="48" height="48" rx="24" fill="rgba(255,255,255,0.2)"/>
+                            <circle cx="18" cy="24" r="3" fill="white"/>
+                            <circle cx="30" cy="24" r="3" fill="white"/>
+                            <circle cx="24" cy="16" r="3" fill="white"/>
+                            <circle cx="24" cy="32" r="3" fill="white"/>
+                        </svg>
+                    </div>
+                    <span class="tab-label">Layanan Lainnya</span>
+                    <div class="tab-indicator"></div>
+                </div>
+            </div>
+
+            <!-- Filter Sub Category (dynamically generated) -->
+            <div class="filter-chips">
+                <!-- Chips will be rendered by JavaScript -->
+            </div>
+
+            <!-- Cards Slider -->
+            <div class="cards-wrapper">
+                <div class="cards-container">
+                    <div class="cards-slider" id="cardsSlider">
+                        <!-- Cards will be rendered by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <div class="nav-arrows">
+                    <button class="nav-arrow prev" id="prevBtn" disabled>
+                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8L11 3V13L5 8Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                    <button class="nav-arrow next" id="nextBtn">
+                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 8L11 3V13L5 8Z" fill="currentColor"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination" id="pagination">
+                <!-- Pagination dots will be generated by JS -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
