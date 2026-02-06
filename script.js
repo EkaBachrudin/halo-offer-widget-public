@@ -224,7 +224,7 @@ function renderCards(category, chip) {
                     ${originalPriceHtml}
                     <span class="price-final">${cardData.finalPrice}</span>
                 </div>
-                <button class="package-btn">Berlangganan</button>
+                <button class="package-btn subscribe-trigger">Berlangganan</button>
             </div>
         `;
 
@@ -365,9 +365,107 @@ function handleSwipe() {
     }
 }
 
+// Modal Elements (initialized after DOM is ready)
+let modal, modalBackdrop, modalClose, modalSubscribeBtn;
+let modalTitle, modalPrice, modalValidity, modalExtra, modalPromoBadge;
+
+// Initialize modal elements
+function initModalElements() {
+    modal = document.getElementById('subscriptionModal');
+    modalBackdrop = document.getElementById('modalBackdrop');
+    modalClose = document.getElementById('modalClose');
+    modalSubscribeBtn = document.getElementById('modalSubscribeBtn');
+    modalTitle = document.getElementById('modalTitle');
+    modalPrice = document.getElementById('modalPrice');
+    modalValidity = document.getElementById('modalValidity');
+    modalExtra = document.getElementById('modalExtra');
+    modalPromoBadge = document.getElementById('modalPromoBadge');
+
+    // Close modal on backdrop click
+    modalBackdrop.addEventListener('click', closeModal);
+
+    // Close modal on close button click
+    modalClose.addEventListener('click', closeModal);
+
+    // Expandable sections functionality
+    document.querySelectorAll('.expandable-header').forEach(header => {
+        header.addEventListener('click', () => {
+            const section = header.closest('.expandable-section');
+            section.classList.toggle('active');
+        });
+    });
+
+    // Subscribe button in modal
+    modalSubscribeBtn.addEventListener('click', () => {
+        alert('Terima kasih! Berlangganan berhasil diproses.');
+        closeModal();
+    });
+}
+
+// Open modal function
+function openModal(cardData) {
+    // Update modal content
+    modalTitle.textContent = cardData.name;
+    modalPrice.textContent = cardData.finalPrice;
+    modalValidity.textContent = cardData.duration;
+    modalExtra.textContent = cardData.extra;
+
+    // Show/hide promo badge
+    if (cardData.promo) {
+        modalPromoBadge.style.display = 'inline-block';
+        modalPromoBadge.textContent = cardData.promo;
+    } else {
+        modalPromoBadge.style.display = 'none';
+    }
+
+    // Reset expandable sections
+    document.querySelectorAll('.expandable-section').forEach(section => {
+        section.classList.remove('active');
+    });
+
+    // Show modal
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+// Close modal function
+function closeModal() {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+// Close modal on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
+        closeModal();
+    }
+});
+
+// Event delegation for subscribe buttons
+slider.addEventListener('click', (e) => {
+    if (e.target.classList.contains('subscribe-trigger')) {
+        const card = e.target.closest('.package-card');
+        const cardIndex = Array.from(slider.children).indexOf(card);
+        const chipData = categoryData[currentCategory];
+        const currentCards = chipData.cards[currentChip];
+        const cardData = currentCards[cardIndex];
+
+        if (cardData) {
+            openModal(cardData);
+        }
+    }
+});
+
 // Initialize
 window.addEventListener('resize', handleResize);
 handleResize();
+
+// Initialize modal elements after DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initModalElements);
+} else {
+    initModalElements();
+}
 
 // Initial render
 renderSubCategory(currentCategory);

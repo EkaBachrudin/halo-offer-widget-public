@@ -223,6 +223,8 @@ body {
     height: 298px;
     background: linear-gradient(135deg, #ff0000 0%, #cc0000 100%);
     opacity: 0.05;
+    z-index: -1;
+    pointer-events: none;
 }
 
 .package-card-content {
@@ -404,6 +406,351 @@ body {
     align-items: center;
     justify-content: center;
     color: #ffffff;
+}
+
+/* Subscription Modal / Bottom Sheet */
+.subscription-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+}
+
+.subscription-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: #19315399;
+}
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.subscription-modal.active .modal-container {
+    transform: translateY(0);
+}
+
+/* Close Button */
+.modal-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 32px;
+    height: 32px;
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.modal-close svg {
+    width: 20px;
+    height: 20px;
+    color: #ffffff;
+}
+
+/* Modal Header */
+.modal-header {
+    background: linear-gradient(135deg, #ed0226 0%, #c4001e 100%);
+    padding: 24px;
+    padding-top: 56px;
+}
+
+.modal-promo-badge {
+    display: inline-block;
+    background: #ffa500;
+    color: #ffffff;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.modal-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    line-height: 1.3;
+}
+
+/* Modal Pricing */
+.modal-pricing {
+    padding: 20px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.price-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-price {
+    font-size: 32px;
+    font-weight: 700;
+    color: #ed0226;
+    line-height: 1;
+}
+
+.modal-validity {
+    background: #f5f5f5;
+    color: #333333;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 14px;
+    border-radius: 8px;
+    white-space: nowrap;
+}
+
+/* Data Plan Section */
+.modal-data-plan {
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.data-plan-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data-plan-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #757f90;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.globe-icon {
+    width: 20px;
+    height: 20px;
+    color: #757f90;
+}
+
+.data-plan-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #181c21;
+}
+
+/* Expandable Sections */
+.modal-expandable {
+    padding: 0 24px;
+    overflow-y: auto;
+}
+
+.expandable-section {
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.expandable-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.expandable-header span {
+    font-size: 15px;
+    font-weight: 600;
+    color: #181c21;
+}
+
+.expandable-header .chevron {
+    width: 20px;
+    height: 20px;
+    color: #a0a0a0;
+    transition: transform 0.3s ease;
+}
+
+.expandable-section.active .chevron {
+    transform: rotate(180deg);
+}
+
+.expandable-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.expandable-section.active .expandable-content {
+    max-height: 500px;
+}
+
+.detail-list,
+.terms-list {
+    list-style: none;
+    padding-bottom: 16px;
+}
+
+.detail-list li,
+.terms-list li {
+    font-size: 14px;
+    color: #757f90;
+    line-height: 1.6;
+    padding-left: 20px;
+    position: relative;
+    margin-bottom: 8px;
+}
+
+.detail-list li:before,
+.terms-list li:before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #ed0226;
+    font-weight: 700;
+}
+
+/* Modal CTA */
+.modal-cta {
+    padding: 20px 24px;
+    padding-bottom: 28px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.modal-subscribe-btn {
+    width: 100%;
+    padding: 16px 24px;
+    background: linear-gradient(135deg, #ed0226 0%, #c4001e 100%);
+    border: none;
+    border-radius: 16px;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(237, 2, 38, 0.3);
+}
+
+.modal-subscribe-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(237, 2, 38, 0.4);
+}
+
+.modal-subscribe-btn:active {
+    transform: translateY(0);
+}
+
+/* Mobile Bottom Sheet Styles */
+@media (max-width: 768px) {
+    .subscription-modal {
+        align-items: flex-end;
+    }
+
+    .modal-container {
+        max-width: 100%;
+        border-radius: 24px 24px 0 0;
+        transform: translateY(100%);
+        max-height: 85vh;
+    }
+
+    .subscription-modal.active .modal-container {
+        transform: translateY(0);
+    }
+
+    /* Drag Handle for Mobile */
+    .modal-container::before {
+        content: '';
+        position: absolute;
+        top: 8px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 40px;
+        height: 4px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 2px;
+        z-index: 5;
+    }
+
+    .modal-close {
+        top: 12px;
+        right: 12px;
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    .modal-header {
+        padding: 48px 20px 20px;
+    }
+
+    .modal-title {
+        font-size: 20px;
+    }
+
+    .modal-pricing {
+        padding: 16px 20px;
+    }
+
+    .modal-price {
+        font-size: 28px;
+    }
+
+    .modal-data-plan,
+    .modal-expandable {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    .modal-cta {
+        padding: 16px 20px 24px;
+    }
+}
+
+/* Desktop Popup Enhancement */
+@media (min-width: 769px) {
+    .subscription-modal::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% + 40px);
+        height: calc(100% + 40px);
+        background: transparent;
+        border-radius: 28px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        z-index: -1;
+    }
 }
 
 /* Responsive */

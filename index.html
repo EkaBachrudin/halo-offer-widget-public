@@ -102,6 +102,91 @@
         </div>
     </div>
 
+    <!-- Subscription Modal/Bottom Sheet -->
+    <div class="subscription-modal" id="subscriptionModal">
+        <div class="modal-backdrop" id="modalBackdrop"></div>
+        <div class="modal-container">
+            <!-- Close Button -->
+            <button class="modal-close" id="modalClose">
+                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+            </button>
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div class="modal-promo-badge" id="modalPromoBadge">PROMO</div>
+                <h2 class="modal-title" id="modalTitle">Netflix Premium</h2>
+            </div>
+
+            <!-- Pricing Section -->
+            <div class="modal-pricing">
+                <div class="price-section">
+                    <span class="modal-price" id="modalPrice">Rp 186.000</span>
+                    <span class="modal-validity" id="modalValidity">31 Hari</span>
+                </div>
+            </div>
+
+            <!-- Data Plan Section -->
+            <div class="modal-data-plan">
+                <div class="data-plan-row">
+                    <div class="data-plan-label">
+                        <svg class="globe-icon" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2"/>
+                            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" stroke="currentColor" stroke-width="2"/>
+                        </svg>
+                        <span>INTERNET</span>
+                    </div>
+                    <span class="data-plan-value" id="modalExtra">Extra 2 GB</span>
+                </div>
+            </div>
+
+            <!-- Expandable Sections -->
+            <div class="modal-expandable">
+                <!-- Detail Paket -->
+                <div class="expandable-section">
+                    <button class="expandable-header" data-expand="details">
+                        <span>Detail Paket</span>
+                        <svg class="chevron" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="expandable-content" id="detailsContent">
+                        <ul class="detail-list">
+                            <li>Akses unlimited ke semua konten premium</li>
+                            <li>Kualitas streaming Ultra HD 4K</li>
+                            <li>Simultan hingga 4 perangkat</li>
+                            <li>Download offline tanpa batas</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Syarat & Ketentuan -->
+                <div class="expandable-section">
+                    <button class="expandable-header" data-expand="terms">
+                        <span>Syarat & Ketentuan</span>
+                        <svg class="chevron" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </button>
+                    <div class="expandable-content" id="termsContent">
+                        <ul class="terms-list">
+                            <li>Paket berlaku sesuai masa aktif yang dipilih</li>
+                            <li>Kuota internet berlaku 24 jam</li>
+                            <li>Tidak dapat diubah atau ditukar dengan paket lain</li>
+                            <li>Pembayaran non-refundable setelah aktivasi</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div class="modal-cta">
+                <button class="modal-subscribe-btn" id="modalSubscribeBtn">Berlangganan</button>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
