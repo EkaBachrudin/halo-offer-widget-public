@@ -214,6 +214,7 @@ body {
 /* Package Card */
 .package-card {
     width: 280px;
+    height: 298px;
     background: #ffffff;
     border: 1px solid #dae0e9;
     border-radius: 16px;
@@ -804,5 +805,14 @@ body {
 
     .cards-container {
         padding: 40px 0 10px;
+    }
+
+    /* Package Card Mobile */
+    .package-card {
+        width: 248px;
+    }
+
+    .package-card-bg {
+        width: 248px;
     }
 }
