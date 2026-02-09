@@ -2,11 +2,11 @@
 const categoryData = {
     video: {
         chips: [
-            { id: 'netflix', label: 'Netflix', color: '#E50914', icon: 'N' },
-            { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', icon: 'D+' },
-            { id: 'vidio', label: 'Vidio', color: '#ED0226', icon: 'V' },
-            { id: 'wetv', label: 'WeTV', color: '#FF9500', icon: 'W' },
-            { id: 'prime', label: 'Prime Video', color: '#00A8E1', icon: 'P' }
+            { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
+            { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
+            { id: 'vidio', label: 'Vidio', color: '#ED0226', iconFile: 'video.svg' },
+            { id: 'wetv', label: 'WeTV', color: '#FF9500', iconFile: 'video.svg' },
+            { id: 'prime', label: 'Prime Video', color: '#00A8E1', iconFile: 'prime_video.svg' }
         ],
         cards: {
             netflix: [
@@ -41,10 +41,10 @@ const categoryData = {
     },
     games: {
         chips: [
-            { id: 'mobile-legends', label: 'Mobile Legends', color: '#D3242A', icon: 'ML' },
-            { id: 'pubg', label: 'PUBG Mobile', color: '#F7A607', icon: 'PUBG' },
-            { id: 'freefire', label: 'Free Fire', color: '#FF6B00', icon: 'FF' },
-            { id: 'genshin', label: 'Genshin Impact', color: '#00A8E1', icon: 'GI' }
+            { id: 'mobile-legends', label: 'Mobile Legends', color: '#D3242A', iconFile: 'mobile_lagend.svg' },
+            { id: 'pubg', label: 'PUBG Mobile', color: '#F7A607', iconFile: 'garena.svg' },
+            { id: 'freefire', label: 'Free Fire', color: '#FF6B00', iconFile: 'free_fire.svg' },
+            { id: 'genshin', label: 'Genshin Impact', color: '#00A8E1', iconFile: 'roblox.svg' }
         ],
         cards: {
             'mobile-legends': [
@@ -72,10 +72,10 @@ const categoryData = {
     },
     music: {
         chips: [
-            { id: 'spotify', label: 'Spotify', color: '#1DB954', icon: 'S' },
-            { id: 'joox', label: 'JOOX', color: '#FF5200', icon: 'J' },
-            { id: 'apple-music', label: 'Apple Music', color: '#FA243C', icon: 'AM' },
-            { id: 'youtube-music', label: 'YouTube Music', color: '#FF0000', icon: 'YT' }
+            { id: 'spotify', label: 'Spotify', color: '#1DB954', iconFile: 'spotify.svg' },
+            { id: 'joox', label: 'JOOX', color: '#FF5200', iconFile: 'langit_musik.svg' },
+            { id: 'apple-music', label: 'Apple Music', color: '#FA243C', iconFile: 'youtube.svg' },
+            { id: 'youtube-music', label: 'YouTube Music', color: '#FF0000', iconFile: 'smule.svg' }
         ],
         cards: {
             spotify: [
@@ -99,9 +99,11 @@ const categoryData = {
     },
     others: {
         chips: [
-            { id: 'canva', label: 'Canva', color: '#00C4CC', icon: 'C' },
-            { id: 'linkedin', label: 'LinkedIn Learning', color: '#0077B5', icon: 'LI' },
-            { id: 'adobe', label: 'Adobe CC', color: '#FF0000', icon: 'Ae' }
+            { id: 'canva', label: 'Canva', color: '#00C4CC', iconFile: 'gpt.svg' },
+            { id: 'linkedin', label: 'LinkedIn Learning', color: '#0077B5', iconFile: 'linkedin.svg' },
+            { id: 'adobe', label: 'Adobe CC', color: '#FF0000', iconFile: 'zoom.svg' },
+            { id: 'norton', label: 'Norton', color: '#FFEB3B', iconFile: 'norton.svg' },
+            { id: 'kompas', label: 'Kompas', color: '#FF5722', iconFile: 'kompas.svg' }
         ],
         cards: {
             canva: [
@@ -115,6 +117,14 @@ const categoryData = {
             adobe: [
                 { name: 'Adobe CC Single', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp320.000', promo: 'Promo' },
                 { name: 'Adobe CC Full', duration: '30 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp600.000', finalPrice: 'Rp550.000', promo: 'Best Deal' }
+            ],
+            norton: [
+                { name: 'Norton Basic', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp50.000', finalPrice: 'Rp45.000', promo: 'Promo' },
+                { name: 'Norton Premium', duration: '365 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp500.000', finalPrice: 'Rp450.000', promo: 'Best Deal' }
+            ],
+            kompas: [
+                { name: 'Kompas Digital', duration: '30 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
+                { name: 'Kompas Yearly', duration: '365 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp250.000', promo: 'Best Deal' }
             ]
         }
     }
@@ -160,10 +170,7 @@ function renderSubCategory(category) {
 
         chip.innerHTML = `
             <div class="chip-icon">
-                <svg viewBox="0 0 24 24" fill="none">
-                    <rect width="24" height="24" rx="12" fill="${chipData.color}"/>
-                    <text x="50%" y="55%" text-anchor="middle" fill="white" font-size="${chipData.icon.length > 2 ? '5' : '8'}" font-weight="bold">${chipData.icon}</text>
-                </svg>
+                <img src="assets/sub-category-icons/${chipData.iconFile}" alt="${chipData.label}">
             </div>
             <span class="chip-label">${chipData.label}</span>
         `;
@@ -286,6 +293,15 @@ nextBtn.addEventListener('click', () => {
     updateSlider();
 });
 
+// Update background image based on category
+function updateBackground(category) {
+    const widgetBg = document.querySelector('.widget-bg');
+    // Remove all bg- classes
+    widgetBg.classList.remove('bg-video', 'bg-games', 'bg-music', 'bg-others');
+    // Add the appropriate bg- class
+    widgetBg.classList.add(`bg-${category}`);
+}
+
 // Tab switching
 tabs.forEach(tab => {
     tab.addEventListener('click', () => {
@@ -298,6 +314,9 @@ tabs.forEach(tab => {
         // Update active state based on selected tab
         const tabName = tab.dataset.tab;
         currentCategory = tabName;
+
+        // Update background image
+        updateBackground(tabName);
 
         // Render new chips and cards
         renderSubCategory(tabName);
@@ -468,5 +487,6 @@ if (document.readyState === 'loading') {
 }
 
 // Initial render
+updateBackground(currentCategory);
 renderSubCategory(currentCategory);
 renderCards(currentCategory, currentChip);
