@@ -13,9 +13,8 @@ body {
 .widget-container {
     position: relative;
     width: 100%;
-    max-width: 1440px;
     margin: 0 auto;
-    min-height: 748px;
+    min-height: 722px;
     background: linear-gradient(135deg, #001a41 0%, #003366 50%, #001a41 100%);
     overflow: hidden;
 }
@@ -25,7 +24,6 @@ body {
     position: absolute;
     inset: 0;
     background-size: cover;
-    background-position: center;
     transition: background-image 0.5s ease;
 }
 
