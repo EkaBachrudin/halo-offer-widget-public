@@ -72,11 +72,20 @@ body {
     gap: 16px;
     width: 100%;
     max-width: 888px;
-    justify-content: center;
+    justify-content: flex-start;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    padding: 4px 0;
+}
+
+.category-tabs::-webkit-scrollbar {
+    display: none;
 }
 
 .tab-item {
-    min-width: 170px;
+    width: 210px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -773,11 +782,6 @@ body {
 @media (max-width: 1024px) {
     .category-tabs {
         max-width: 100%;
-        flex-wrap: wrap;
-    }
-
-    .tab-item {
-        min-width: calc(25% - 12px);
     }
 
     .filter-chips {
@@ -794,6 +798,15 @@ body {
     .widget-title {
         font-size: 24px;
         line-height: 36px;
+    }
+
+    .category-tabs {
+        gap: 12px;
+        padding: 4px 0;
+    }
+
+    .tab-item {
+        width: 168px;
     }
 
     .tab-label {

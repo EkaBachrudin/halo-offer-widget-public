@@ -100,7 +100,6 @@ const categoryData = {
     others: {
         chips: [
             { id: 'canva', label: 'Canva', color: '#00C4CC', iconFile: 'gpt.svg' },
-            { id: 'linkedin', label: 'LinkedIn Learning', color: '#0077B5', iconFile: 'linkedin.svg' },
             { id: 'adobe', label: 'Adobe CC', color: '#FF0000', iconFile: 'zoom.svg' },
             { id: 'norton', label: 'Norton', color: '#FFEB3B', iconFile: 'norton.svg' },
             { id: 'kompas', label: 'Kompas', color: '#FF5722', iconFile: 'kompas.svg' }
@@ -109,10 +108,6 @@ const categoryData = {
             canva: [
                 { name: 'Canva Pro', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp50.000', promo: 'Promo' },
                 { name: 'Canva Pro 6M', duration: '180 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp360.000', finalPrice: 'Rp300.000', promo: 'Best Deal' }
-            ],
-            linkedin: [
-                { name: 'LinkedIn Learning', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp200.000', finalPrice: 'Rp180.000', promo: 'Promo' },
-                { name: 'LinkedIn Annual', duration: '365 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp2.400.000', finalPrice: 'Rp2.000.000', promo: 'Best Deal' }
             ],
             adobe: [
                 { name: 'Adobe CC Single', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp320.000', promo: 'Promo' },
