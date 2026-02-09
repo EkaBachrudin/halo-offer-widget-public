@@ -1,6 +1,11 @@
 // Data structure for categories, chips, and cards
-const categoryData = {
-    video: {
+// Array format for easy API integration
+const categoryData = [
+    {
+        category: 'video',
+        label: 'Video',
+        iconFile: 'moves.svg',
+        background: "assets/backgrounds/video.png",
         chips: [
             { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
             { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
@@ -39,7 +44,11 @@ const categoryData = {
             ]
         }
     },
-    games: {
+    {
+        category: 'games',
+        label: 'Games',
+        iconFile: 'games.svg',
+        background: "assets/backgrounds/games.png",
         chips: [
             { id: 'mobile-legends', label: 'Mobile Legends', color: '#D3242A', iconFile: 'mobile_lagend.svg' },
             { id: 'pubg', label: 'PUBG Mobile', color: '#F7A607', iconFile: 'garena.svg' },
@@ -70,7 +79,11 @@ const categoryData = {
             ]
         }
     },
-    music: {
+    {
+        category: 'music',
+        label: 'Music',
+        iconFile: 'musics.svg',
+        background: "assets/backgrounds/music.png",
         chips: [
             { id: 'spotify', label: 'Spotify', color: '#1DB954', iconFile: 'spotify.svg' },
             { id: 'joox', label: 'JOOX', color: '#FF5200', iconFile: 'langit_musik.svg' },
@@ -97,7 +110,11 @@ const categoryData = {
             ]
         }
     },
-    others: {
+    {
+        category: 'others',
+        label: 'Layanan Lainnya',
+        iconFile: 'others.svg',
+        background: "assets/backgrounds/others.png",
         chips: [
             { id: 'canva', label: 'Canva', color: '#00C4CC', iconFile: 'gpt.svg' },
             { id: 'adobe', label: 'Adobe CC', color: '#FF0000', iconFile: 'zoom.svg' },
@@ -123,7 +140,7 @@ const categoryData = {
             ]
         }
     }
-};
+];
 
 // Slider Configuration
 const sliderConfig = {
@@ -132,27 +149,74 @@ const sliderConfig = {
     gap: 24
 };
 
-// Current state
-let currentCategory = 'video';
+// Current state - using category index for array-based approach
+let currentCategoryIndex = 0;
 let currentChip = 'netflix';
 let currentOffset = 0;
 let totalCards = 0;
 let maxOffset = 0;
+
+// Helper function to get current category data
+function getCurrentCategory() {
+    return categoryData[currentCategoryIndex];
+}
 
 // Elements
 const slider = document.getElementById('cardsSlider');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pagination = document.getElementById('pagination');
-const tabs = document.querySelectorAll('.tab-item');
-let filterChipsContainer;
 
 // Calculate slide width
 const slideWidth = sliderConfig.cardWidth + sliderConfig.gap;
 
-// Render chips based on selected category
-function renderSubCategory(category) {
-    const data = categoryData[category];
+// Render tabs dynamically from categoryData array
+function renderTabs() {
+    const tabsContainer = document.querySelector('.category-tabs');
+    tabsContainer.innerHTML = '';
+
+    categoryData.forEach((item, index) => {
+        const tab = document.createElement('div');
+        tab.className = 'tab-item' + (index === 0 ? ' active' : '');
+        tab.dataset.index = index;
+
+        tab.innerHTML = `
+            <div class="tab-icon">
+                <img src="assets/category-icons/${item.iconFile}" alt="${item.label}">
+            </div>
+            <span class="tab-label">${item.label}</span>
+            <div class="tab-indicator"></div>
+        `;
+
+        tabsContainer.appendChild(tab);
+    });
+
+    // Re-attach tab event listeners
+    const tabs = document.querySelectorAll('.tab-item');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            // Reset slider position
+            currentOffset = 0;
+
+            // Update current category index
+            currentCategoryIndex = parseInt(tab.dataset.index);
+
+            // Update background image
+            updateBackground(currentCategoryIndex);
+
+            // Render new chips and cards
+            renderSubCategory(currentCategoryIndex);
+            renderCards(currentCategoryIndex, currentChip);
+        });
+    });
+}
+
+// Render chips based on selected category index
+function renderSubCategory(categoryIndex) {
+    const data = categoryData[categoryIndex];
     if (!data) return;
 
     const chipsContainer = document.querySelector('.filter-chips');
@@ -175,7 +239,7 @@ function renderSubCategory(category) {
             chip.classList.add('active');
             currentChip = chipData.id;
             currentOffset = 0;
-            renderCards(currentCategory, currentChip);
+            renderCards(currentCategoryIndex, currentChip);
         });
 
         chipsContainer.appendChild(chip);
@@ -185,9 +249,9 @@ function renderSubCategory(category) {
     currentChip = data.chips[0]?.id || '';
 }
 
-// Render cards based on selected category and chip
-function renderCards(category, chip) {
-    const data = categoryData[category];
+// Render cards based on selected category index and chip
+function renderCards(categoryIndex, chip) {
+    const data = categoryData[categoryIndex];
     if (!data || !data.cards[chip]) return;
 
     const cards = data.cards[chip];
@@ -288,36 +352,15 @@ nextBtn.addEventListener('click', () => {
     updateSlider();
 });
 
-// Update background image based on category
-function updateBackground(category) {
+// Update background image based on category index
+function updateBackground(categoryIndex) {
+    const data = categoryData[categoryIndex];
+    if (!data?.background) return;
+
     const widgetBg = document.querySelector('.widget-bg');
-    // Remove all bg- classes
-    widgetBg.classList.remove('bg-video', 'bg-games', 'bg-music', 'bg-others');
-    // Add the appropriate bg- class
-    widgetBg.classList.add(`bg-${category}`);
+    // Set background image directly from categoryData
+    widgetBg.style.backgroundImage = `url('${data.background}')`;
 }
-
-// Tab switching
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        // Reset slider position
-        currentOffset = 0;
-
-        // Update active state based on selected tab
-        const tabName = tab.dataset.tab;
-        currentCategory = tabName;
-
-        // Update background image
-        updateBackground(tabName);
-
-        // Render new chips and cards
-        renderSubCategory(tabName);
-        renderCards(tabName, currentChip);
-    });
-});
 
 // Handle window resize
 function handleResize() {
@@ -460,8 +503,8 @@ slider.addEventListener('click', (e) => {
     if (e.target.classList.contains('subscribe-trigger')) {
         const card = e.target.closest('.package-card');
         const cardIndex = Array.from(slider.children).indexOf(card);
-        const chipData = categoryData[currentCategory];
-        const currentCards = chipData.cards[currentChip];
+        const categoryData = getCurrentCategory();
+        const currentCards = categoryData.cards[currentChip];
         const cardData = currentCards[cardIndex];
 
         if (cardData) {
@@ -476,12 +519,19 @@ handleResize();
 
 // Initialize modal elements after DOM is ready
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initModalElements);
+    document.addEventListener('DOMContentLoaded', () => {
+        initModalElements();
+        // Initial render
+        renderTabs();
+        updateBackground(currentCategoryIndex);
+        renderSubCategory(currentCategoryIndex);
+        renderCards(currentCategoryIndex, currentChip);
+    });
 } else {
     initModalElements();
+    // Initial render
+    renderTabs();
+    updateBackground(currentCategoryIndex);
+    renderSubCategory(currentCategoryIndex);
+    renderCards(currentCategoryIndex, currentChip);
 }
-
-// Initial render
-updateBackground(currentCategory);
-renderSubCategory(currentCategory);
-renderCards(currentCategory, currentChip);

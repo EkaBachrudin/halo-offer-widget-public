@@ -29,23 +29,6 @@ body {
     transition: background-image 0.5s ease;
 }
 
-/* Category-specific background images */
-.widget-bg.bg-video {
-    background-image: url('assets/backgrounds/video.png');
-}
-
-.widget-bg.bg-games {
-    background-image: url('assets/backgrounds/games.png');
-}
-
-.widget-bg.bg-music {
-    background-image: url('assets/backgrounds/music.png');
-}
-
-.widget-bg.bg-others {
-    background-image: url('assets/backgrounds/others.png');
-}
-
 /* Content Wrapper */
 .widget-content {
     position: relative;
