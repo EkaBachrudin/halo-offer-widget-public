@@ -353,6 +353,16 @@ function updateSlider() {
             navArrows.style.display = 'flex';
         }
     }
+
+    // Hide pagination in desktop when total cards <= 3, always hide on mobile
+    const isMobile = window.innerWidth <= 768;
+    if (pagination) {
+        if (isMobile || (totalCards <= 3 && !isMobile)) {
+            pagination.style.display = 'none';
+        } else {
+            pagination.style.display = 'flex';
+        }
+    }
 }
 
 // Go to specific slide
