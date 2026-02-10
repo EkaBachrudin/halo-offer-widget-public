@@ -801,7 +801,7 @@ body {
 
     .category-tabs {
         gap: 12px;
-        padding: 4px 0;
+        padding: 4px 16px;
     }
 
     .tab-item {
@@ -833,6 +833,6 @@ body {
     }
 
     .cards-container {
-        padding-left: 20px;
+        padding-left: 16px;
     }
 }
