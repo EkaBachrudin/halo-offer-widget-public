@@ -344,9 +344,10 @@ function updateSlider() {
         dot.style.width = index === currentSlide ? '32px' : '8px';
     });
 
-    // Show/hide arrows based on total cards
+    // Show/hide arrows based on total cards and screen size
     if (navArrows) {
-        if (totalCards <= 3) {
+        const isMobile = window.innerWidth <= 768;
+        if (totalCards <= 3 || isMobile) {
             navArrows.style.display = 'none';
         } else {
             navArrows.style.display = 'flex';
