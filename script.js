@@ -172,6 +172,7 @@ const slider = document.getElementById('cardsSlider');
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pagination = document.getElementById('pagination');
+const navArrows = document.querySelector('.nav-arrows');
 
 // Calculate slide width dynamically
 function getSlideWidth() {
@@ -342,6 +343,15 @@ function updateSlider() {
         dot.classList.toggle('active', index === currentSlide);
         dot.style.width = index === currentSlide ? '32px' : '8px';
     });
+
+    // Show/hide arrows based on total cards
+    if (navArrows) {
+        if (totalCards <= 3) {
+            navArrows.style.display = 'none';
+        } else {
+            navArrows.style.display = 'flex';
+        }
+    }
 }
 
 // Go to specific slide

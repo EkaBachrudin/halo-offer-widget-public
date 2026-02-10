@@ -780,6 +780,11 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Hide navigation arrows on mobile */
+    .nav-arrows {
+        display: none;
+    }
+
     /* Remove horizontal padding for full-width slider on mobile */
     .widget-content {
         padding: 40px 0;
