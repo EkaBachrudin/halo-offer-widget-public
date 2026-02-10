@@ -13,36 +13,36 @@ const categoryData = [
             { id: 'wetv', label: 'WeTV', color: '#FF9500', iconFile: 'video.svg' },
             { id: 'prime', label: 'Prime Video', color: '#00A8E1', iconFile: 'prime_video.svg' }
         ],
-        cards: {
-            netflix: [
+        cards: [
+            { chipId: 'netflix', items: [
                 { name: 'Netflix Mobile', duration: '31 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp213.000', finalPrice: 'Rp186.000', promo: 'Promo' },
                 { name: 'Netflix Basic', duration: '31 Hari', extra: 'Extra 4 GB', originalPrice: 'Rp256.000', finalPrice: 'Rp226.000', promo: 'Promo' },
                 { name: 'Netflix Standard', duration: '62 Hari', extra: 'Extra 6 GB', originalPrice: 'Rp450.000', finalPrice: 'Rp396.000', promo: 'Promo' },
                 { name: 'Netflix Premium', duration: '31 Hari', extra: 'Extra 8 GB', originalPrice: 'Rp360.000', finalPrice: 'Rp360.000', promo: null },
                 { name: 'Netflix Mobile', duration: '93 Hari', extra: 'Extra 6 GB', originalPrice: 'Rp639.000', finalPrice: 'Rp546.000', promo: 'Best Deal' }
-            ],
-            hotstar: [
+            ]},
+            { chipId: 'hotstar', items: [
                 { name: 'Hotstar Mobile', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp35.000', finalPrice: 'Rp30.000', promo: 'Promo' },
                 { name: 'Hotstar Premium', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp55.000', promo: 'Promo' },
                 { name: 'Hotstar Yearly', duration: '365 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp420.000', finalPrice: 'Rp360.000', promo: 'Best Deal' },
                 { name: 'Hotstar Mobile 6M', duration: '180 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp210.000', finalPrice: 'Rp180.000', promo: null }
-            ],
-            vidio: [
+            ]},
+            { chipId: 'vidio', items: [
                 { name: 'Vidio Platinum', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
                 { name: 'Vidio Platinum 3M', duration: '90 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp90.000', finalPrice: 'Rp75.000', promo: 'Promo' },
                 { name: 'Vidio Yearly', duration: '365 Hari', extra: 'Extra 15 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp250.000', promo: 'Best Deal' }
-            ],
-            wetv: [
+            ]},
+            { chipId: 'wetv', items: [
                 { name: 'WeTV VIP', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp35.000', finalPrice: 'Rp30.000', promo: 'Promo' },
                 { name: 'WeTV VIP 3M', duration: '90 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp105.000', finalPrice: 'Rp90.000', promo: null },
                 { name: 'WeTV Yearly', duration: '365 Hari', extra: 'Extra 8 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp300.000', promo: 'Best Deal' }
-            ],
-            prime: [
+            ]},
+            { chipId: 'prime', items: [
                 { name: 'Prime Video Monthly', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp55.000', promo: 'Promo' },
                 { name: 'Prime Video 3M', duration: '90 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp180.000', finalPrice: 'Rp150.000', promo: null },
                 { name: 'Prime Yearly', duration: '365 Hari', extra: 'Extra 15 GB', originalPrice: 'Rp600.000', finalPrice: 'Rp500.000', promo: 'Best Deal' }
-            ]
-        }
+            ]}
+        ]
     },
     {
         category: 'games',
@@ -55,29 +55,29 @@ const categoryData = [
             { id: 'freefire', label: 'Free Fire', color: '#FF6B00', iconFile: 'free_fire.svg' },
             { id: 'genshin', label: 'Genshin Impact', color: '#00A8E1', iconFile: 'roblox.svg' }
         ],
-        cards: {
-            'mobile-legends': [
+        cards: [
+            { chipId: 'mobile-legends', items: [
                 { name: 'Weekly Pass', duration: '7 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp28.000', finalPrice: 'Rp25.000', promo: 'Promo' },
                 { name: 'Monthly Pass', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp150.000', finalPrice: 'Rp130.000', promo: 'Promo' },
                 { name: 'Twilight Pass', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp280.000', finalPrice: 'Rp250.000', promo: null },
                 { name: 'Starlight Member', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp100.000', finalPrice: 'Rp90.000', promo: 'Best Deal' }
-            ],
-            pubg: [
+            ]},
+            { chipId: 'pubg', items: [
                 { name: 'UC Pack 60', duration: '7 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp15.000', finalPrice: 'Rp12.000', promo: 'Promo' },
                 { name: 'UC Pack 325', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp75.000', finalPrice: 'Rp65.000', promo: null },
                 { name: 'Royale Pass', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp150.000', finalPrice: 'Rp130.000', promo: 'Best Deal' }
-            ],
-            freefire: [
+            ]},
+            { chipId: 'freefire', items: [
                 { name: 'FF Diamond 70', duration: '7 Hari', extra: 'Extra 300 MB', originalPrice: 'Rp10.000', finalPrice: 'Rp8.500', promo: 'Promo' },
                 { name: 'FF Diamond 140', duration: '15 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp20.000', finalPrice: 'Rp17.000', promo: null },
                 { name: 'Membership Mingguan', duration: '7 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Best Deal' }
-            ],
-            genshin: [
+            ]},
+            { chipId: 'genshin', items: [
                 { name: 'Welkin Moon', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp79.000', finalPrice: 'Rp70.000', promo: 'Promo' },
                 { name: 'Genesis Crystal', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp159.000', finalPrice: 'Rp140.000', promo: null },
                 { name: 'Blessing Bundle', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp260.000', promo: 'Best Deal' }
-            ]
-        }
+            ]}
+        ]
     },
     {
         category: 'music',
@@ -90,25 +90,25 @@ const categoryData = [
             { id: 'apple-music', label: 'Apple Music', color: '#FA243C', iconFile: 'youtube.svg' },
             { id: 'youtube-music', label: 'YouTube Music', color: '#FF0000', iconFile: 'smule.svg' }
         ],
-        cards: {
-            spotify: [
+        cards: [
+            { chipId: 'spotify', items: [
                 { name: 'Spotify Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp55.000', finalPrice: 'Rp50.000', promo: 'Promo' },
                 { name: 'Spotify Duo', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp85.000', finalPrice: 'Rp75.000', promo: null },
                 { name: 'Spotify Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp140.000', finalPrice: 'Rp120.000', promo: 'Best Deal' }
-            ],
-            joox: [
+            ]},
+            { chipId: 'joox', items: [
                 { name: 'JOOX VIP', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
                 { name: 'JOOX VIP 3M', duration: '90 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp90.000', finalPrice: 'Rp75.000', promo: 'Best Deal' }
-            ],
-            'apple-music': [
+            ]},
+            { chipId: 'apple-music', items: [
                 { name: 'Apple Music Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp65.000', finalPrice: 'Rp60.000', promo: 'Promo' },
                 { name: 'Apple Music Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp105.000', finalPrice: 'Rp95.000', promo: 'Best Deal' }
-            ],
-            'youtube-music': [
+            ]},
+            { chipId: 'youtube-music', items: [
                 { name: 'YT Music Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp55.000', finalPrice: 'Rp50.000', promo: 'Promo' },
                 { name: 'YT Music Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp95.000', finalPrice: 'Rp85.000', promo: 'Best Deal' }
-            ]
-        }
+            ]}
+        ]
     },
     {
         category: 'others',
@@ -121,24 +121,24 @@ const categoryData = [
             { id: 'norton', label: 'Norton', color: '#FFEB3B', iconFile: 'norton.svg' },
             { id: 'kompas', label: 'Kompas', color: '#FF5722', iconFile: 'kompas.svg' }
         ],
-        cards: {
-            canva: [
+        cards: [
+            { chipId: 'canva', items: [
                 { name: 'Canva Pro', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp50.000', promo: 'Promo' },
                 { name: 'Canva Pro 6M', duration: '180 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp360.000', finalPrice: 'Rp300.000', promo: 'Best Deal' }
-            ],
-            adobe: [
+            ]},
+            { chipId: 'adobe', items: [
                 { name: 'Adobe CC Single', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp320.000', promo: 'Promo' },
                 { name: 'Adobe CC Full', duration: '30 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp600.000', finalPrice: 'Rp550.000', promo: 'Best Deal' }
-            ],
-            norton: [
+            ]},
+            { chipId: 'norton', items: [
                 { name: 'Norton Basic', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp50.000', finalPrice: 'Rp45.000', promo: 'Promo' },
                 { name: 'Norton Premium', duration: '365 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp500.000', finalPrice: 'Rp450.000', promo: 'Best Deal' }
-            ],
-            kompas: [
+            ]},
+            { chipId: 'kompas', items: [
                 { name: 'Kompas Digital', duration: '30 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
                 { name: 'Kompas Yearly', duration: '365 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp250.000', promo: 'Best Deal' }
-            ]
-        }
+            ]}
+        ]
     }
 ];
 
@@ -252,9 +252,12 @@ function renderSubCategory(categoryIndex) {
 // Render cards based on selected category index and chip
 function renderCards(categoryIndex, chip) {
     const data = categoryData[categoryIndex];
-    if (!data || !data.cards[chip]) return;
+    if (!data) return;
 
-    const cards = data.cards[chip];
+    const cardGroup = data.cards.find(c => c.chipId === chip);
+    if (!cardGroup) return;
+
+    const cards = cardGroup.items;
     totalCards = cards.length;
 
     // Update max offset
@@ -504,7 +507,8 @@ slider.addEventListener('click', (e) => {
         const card = e.target.closest('.package-card');
         const cardIndex = Array.from(slider.children).indexOf(card);
         const categoryData = getCurrentCategory();
-        const currentCards = categoryData.cards[currentChip];
+        const cardGroup = categoryData.cards.find(c => c.chipId === currentChip);
+        const currentCards = cardGroup.items;
         const cardData = currentCards[cardIndex];
 
         if (cardData) {
