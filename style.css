@@ -200,17 +200,18 @@ body {
 }
 
 .cards-container {
-    justify-content: center;
     display: flex;
     gap: 24px;
     overflow: hidden;
     padding: 10px 0;
 }
 
+/* Center the slider within the container for desktop */
 .cards-slider {
     display: flex;
     gap: 24px;
     transition: transform 0.5s ease;
+    margin: 0 auto;
 }
 
 /* Package Card */
@@ -836,5 +837,9 @@ body {
     .cards-container {
         justify-content: unset;
         padding-left: 16px;
+    }
+
+    .cards-slider {
+        margin: 0;
     }
 }
