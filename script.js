@@ -5,7 +5,7 @@ const categoryData = [
         category: 'video',
         label: 'Video',
         iconFile: 'moves.svg',
-        background: "assets/backgrounds/video.png",
+        background: "https://www.topgear.com/sites/default/files/2023/07/rh_gt4s-24.jpeg",
         chips: [
             { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
             { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
@@ -281,6 +281,11 @@ function renderCards(categoryIndex, chip) {
         const promoHtml = cardData.promo ? `
             <div class="promo-ribbon">
                 <div class="ribbon-content">${cardData.promo}</div>
+                <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 0.339844H2V9.33984C0.895431 9.33984 0 8.44441 0 7.33984V0.339844Z" fill="#FF0025"/>
+                    <path d="M0 0H8L5.12873 0.628091C2.13432 1.28312 0 3.93478 0 7V0Z" fill="#001A41"/>
+                </svg>
+
             </div>
         ` : '';
 
