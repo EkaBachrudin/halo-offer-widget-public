@@ -409,6 +409,8 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 24px;
+    position: absolute;
+    bottom: 10px;
 }
 
 .pagination-dot {
