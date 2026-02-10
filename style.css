@@ -780,6 +780,20 @@ body {
 }
 
 @media (max-width: 768px) {
+    /* Remove horizontal padding for full-width slider on mobile */
+    .widget-content {
+        padding: 40px 0;
+    }
+
+    /* Add horizontal padding to non-slider elements */
+    .widget-title,
+    .category-tabs,
+    .filter-chips,
+    .pagination {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
     .widget-title {
         font-size: 24px;
         line-height: 36px;
@@ -811,5 +825,10 @@ body {
 
     .package-card-bg {
         width: 248px;
+    }
+
+    /* Remove horizontal padding on mobile for full-width cards */
+    .cards-wrapper {
+        padding: 40px 0 10px;
     }
 }
