@@ -281,7 +281,6 @@ function renderCards(categoryIndex, chip) {
         const promoHtml = cardData.promo ? `
             <div class="promo-ribbon">
                 <div class="ribbon-content">${cardData.promo}</div>
-                <div class="ribbon-tail"></div>
             </div>
         ` : '';
 
