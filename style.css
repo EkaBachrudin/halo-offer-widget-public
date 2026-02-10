@@ -374,22 +374,20 @@ body {
 }
 
 .nav-arrow:disabled {
-    opacity: 0.5;
     cursor: not-allowed;
+}
+
+.nav-arrow:disabled img {
+    filter: brightness(0) saturate(100%) invert(92%) sepia(7%) saturate(172%) hue-rotate(191deg) brightness(93%) contrast(87%);
 }
 
 .nav-arrow:disabled:hover {
     transform: scale(1);
 }
 
-.nav-arrow svg {
-    width: 16px;
-    height: 16px;
-    fill: #001a41;
-}
-
-.nav-arrow.prev svg {
-    transform: rotate(180deg);
+.nav-arrow img {
+    width: 24px;
+    height: 24px;
 }
 
 /* Pagination */
