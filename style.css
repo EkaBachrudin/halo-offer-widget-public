@@ -210,10 +210,11 @@ body {
 
 /* Center the slider within the container for desktop */
 .cards-slider {
+    justify-content: center;
     display: flex;
     gap: 24px;
     transition: transform 0.5s ease;
-    margin: 0 auto;
+    margin: 0;
 }
 
 /* Package Card */
