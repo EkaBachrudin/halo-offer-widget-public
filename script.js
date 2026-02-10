@@ -149,6 +149,12 @@ const sliderConfig = {
     gap: 24
 };
 
+// Get actual card width from DOM
+function getCardWidth() {
+    const card = document.querySelector('.package-card');
+    return card ? card.offsetWidth : sliderConfig.cardWidth;
+}
+
 // Current state - using category index for array-based approach
 let currentCategoryIndex = 0;
 let currentChip = 'netflix';
@@ -167,8 +173,10 @@ const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pagination = document.getElementById('pagination');
 
-// Calculate slide width
-const slideWidth = sliderConfig.cardWidth + sliderConfig.gap;
+// Calculate slide width dynamically
+function getSlideWidth() {
+    return getCardWidth() + sliderConfig.gap;
+}
 
 // Render tabs dynamically from categoryData array
 function renderTabs() {
@@ -261,7 +269,7 @@ function renderCards(categoryIndex, chip) {
     totalCards = cards.length;
 
     // Update max offset
-    maxOffset = slideWidth * Math.max(0, totalCards - sliderConfig.cardsPerView);
+    maxOffset = getSlideWidth() * Math.max(0, totalCards - sliderConfig.cardsPerView);
 
     slider.innerHTML = '';
 
@@ -328,7 +336,7 @@ function updateSlider() {
     nextBtn.disabled = currentOffset >= maxOffset;
 
     // Update pagination
-    const currentSlide = Math.round(currentOffset / (slideWidth * sliderConfig.cardsPerView));
+    const currentSlide = Math.round(currentOffset / (getSlideWidth() * sliderConfig.cardsPerView));
     const dots = pagination.querySelectorAll('.pagination-dot');
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
@@ -338,20 +346,20 @@ function updateSlider() {
 
 // Go to specific slide
 function goToSlide(index) {
-    currentOffset = index * slideWidth * sliderConfig.cardsPerView;
+    currentOffset = index * getSlideWidth() * sliderConfig.cardsPerView;
     currentOffset = Math.min(currentOffset, maxOffset);
     updateSlider();
 }
 
 // Previous button
 prevBtn.addEventListener('click', () => {
-    currentOffset = Math.max(0, currentOffset - slideWidth * sliderConfig.cardsPerView);
+    currentOffset = Math.max(0, currentOffset - getSlideWidth() * sliderConfig.cardsPerView);
     updateSlider();
 });
 
 // Next button
 nextBtn.addEventListener('click', () => {
-    currentOffset = Math.min(maxOffset, currentOffset + slideWidth * sliderConfig.cardsPerView);
+    currentOffset = Math.min(maxOffset, currentOffset + getSlideWidth() * sliderConfig.cardsPerView);
     updateSlider();
 });
 
@@ -378,7 +386,7 @@ function handleResize() {
     }
 
     // Recalculate max offset
-    maxOffset = slideWidth * Math.max(0, totalCards - sliderConfig.cardsPerView);
+    maxOffset = getSlideWidth() * Math.max(0, totalCards - sliderConfig.cardsPerView);
 
     // Reset position if needed
     if (currentOffset > maxOffset) {

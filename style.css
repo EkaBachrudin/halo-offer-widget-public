@@ -804,10 +804,6 @@ body {
         height: 36px;
     }
 
-    .cards-container {
-        padding: 40px 0 10px;
-    }
-
     /* Package Card Mobile */
     .package-card {
         width: 248px;
