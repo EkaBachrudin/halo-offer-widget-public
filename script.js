@@ -5,7 +5,7 @@ const categoryData = [
         category: 'video',
         label: 'Video',
         iconFile: 'moves.svg',
-        background: "https://www.topgear.com/sites/default/files/2023/07/rh_gt4s-24.jpeg",
+        background: "assets/backgrounds/video.png",
         chips: [
             { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
             { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
@@ -294,6 +294,7 @@ function renderCards(categoryIndex, chip) {
             : '';
 
         card.innerHTML = `
+            <img src="assets/components/halo-offer-bg-card.svg" alt="" class="package-card-halo">
             <div class="package-card-bg"></div>
             ${promoHtml}
             <div class="package-card-content">

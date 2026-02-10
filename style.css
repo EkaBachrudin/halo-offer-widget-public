@@ -35,7 +35,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
 }
 
 /* Title Section */
@@ -58,6 +57,7 @@ body {
     scrollbar-width: none;
     -ms-overflow-style: none;
     padding: 4px 0;
+    margin-top: 40px;
 }
 
 .category-tabs::-webkit-scrollbar {
@@ -128,6 +128,7 @@ body {
 
 /* Filter Chips */
 .filter-chips {
+    margin-top: 24px;
     display: flex;
     gap: 8px;
     overflow-x: auto;
@@ -203,7 +204,8 @@ body {
     display: flex;
     gap: 24px;
     overflow: hidden;
-    padding: 50px 0 0 8px;
+    padding: 18px 0 0 8px;
+    margin-top: 36px;
 }
 
 /* Center the slider within the container for desktop */
@@ -224,6 +226,7 @@ body {
     position: relative;
     flex-shrink: 0;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: visible;
 }
 
 .package-card-bg {
@@ -236,6 +239,17 @@ body {
     opacity: 0.05;
     z-index: -1;
     pointer-events: none;
+}
+
+/* Halo Offer Background Card - Top Right Decorative Image */
+.package-card-halo {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 120px;
+    height: 120px;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .package-card-content {
@@ -394,6 +408,7 @@ body {
     gap: 4px;
     align-items: center;
     justify-content: center;
+    margin-top: 24px;
 }
 
 .pagination-dot {
@@ -800,11 +815,13 @@ body {
     .widget-title {
         font-size: 24px;
         line-height: 36px;
+        width: 80%;
     }
 
     .category-tabs {
         gap: 12px;
         padding: 4px 16px;
+        margin-top: 24px;
     }
 
     .tab-item {
@@ -828,6 +845,11 @@ body {
 
     .package-card-bg {
         width: 248px;
+    }
+
+    .package-card-halo {
+        width: 100px;
+        height: 100px;
     }
 
     .cards-container {
