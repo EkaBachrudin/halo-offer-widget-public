@@ -831,4 +831,8 @@ body {
     .cards-wrapper {
         padding: 40px 0 10px;
     }
+
+    .cards-container {
+        padding-left: 20px;
+    }
 }
