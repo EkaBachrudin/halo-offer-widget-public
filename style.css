@@ -196,10 +196,11 @@ body {
 .cards-wrapper {
     position: relative;
     width: 100%;
-    max-width: 984px;
+    max-width: 888px;
 }
 
 .cards-container {
+    justify-content: center;
     display: flex;
     gap: 24px;
     overflow: hidden;
@@ -833,6 +834,7 @@ body {
     }
 
     .cards-container {
+        justify-content: unset;
         padding-left: 16px;
     }
 }
