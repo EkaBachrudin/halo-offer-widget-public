@@ -195,6 +195,8 @@ body {
 
 /* Cards Container */
 .cards-wrapper {
+    display: flex;
+    justify-content: center;
     position: relative;
     width: 100%;
     max-width: 900px;
@@ -212,7 +214,7 @@ body {
 .cards-slider {
     justify-content: center;
     display: flex;
-    gap: 24px;
+    gap: 26px;
     transition: transform 0.5s ease;
     margin: 0;
 }
@@ -861,6 +863,7 @@ body {
     }
 
     .cards-slider {
+        gap: 24px;
         margin: 0;
     }
 }
