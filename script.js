@@ -481,11 +481,21 @@ function initModalElements() {
     // Close modal on close button click
     modalClose.addEventListener('click', closeModal);
 
-    // Expandable sections functionality
+    // Expandable sections functionality (accordion behavior)
     document.querySelectorAll('.expandable-header').forEach(header => {
         header.addEventListener('click', () => {
             const section = header.closest('.expandable-section');
-            section.classList.toggle('active');
+            const isCurrentlyActive = section.classList.contains('active');
+
+            // Close all expandable sections
+            document.querySelectorAll('.expandable-section').forEach(s => {
+                s.classList.remove('active');
+            });
+
+            // Toggle current section (only if it wasn't active)
+            if (!isCurrentlyActive) {
+                section.classList.add('active');
+            }
         });
     });
 
@@ -526,6 +536,11 @@ function openModal(cardData) {
 function closeModal() {
     modal.classList.remove('active');
     document.body.style.overflow = '';
+
+    // Reset expandable sections
+    document.querySelectorAll('.expandable-section').forEach(section => {
+        section.classList.remove('active');
+    });
 }
 
 // Close modal on escape key
