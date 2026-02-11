@@ -10,7 +10,7 @@ body {
 }
 
 /* Loading Overlay */
-.loading-overlay {
+.hoffer-loading-overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(135deg, #001a41 0%, #003366 50%, #001a41 100%);
@@ -23,12 +23,12 @@ body {
     border-radius: inherit;
 }
 
-.loading-overlay.hidden {
+.hoffer-loading-overlay.hidden {
     opacity: 0;
     visibility: hidden;
 }
 
-.loading-spinner {
+.hoffer-loading-spinner {
     width: 48px;
     height: 48px;
     border: 4px solid rgba(255, 255, 255, 0.2);
@@ -37,7 +37,7 @@ body {
     animation: spin 0.8s linear infinite;
 }
 
-.loading-text {
+.hoffer-loading-text {
     margin-top: 16px;
     font-size: 16px;
     font-weight: 500;
@@ -51,7 +51,7 @@ body {
 }
 
 /* Widget Container */
-.widget-container {
+.hoffer-widget-container {
     position: relative;
     width: 100%;
     margin: 0 auto;
@@ -61,7 +61,7 @@ body {
 }
 
 /* Background overlay with decorative elements */
-.widget-bg {
+.hoffer-widget-bg {
     position: absolute;
     inset: 0;
     background-size: cover;
@@ -69,7 +69,7 @@ body {
 }
 
 /* Content Wrapper */
-.widget-content {
+.hoffer-widget-content {
     position: relative;
     z-index: 1;
     padding: 40px 20px;
@@ -79,7 +79,7 @@ body {
 }
 
 /* Title Section */
-.widget-title {
+.hoffer-widget-title {
     font-size: 32px;
     font-weight: 700;
     line-height: 48px;
@@ -88,7 +88,7 @@ body {
 }
 
 /* Category Tabs */
-.category-tabs {
+.hoffer-category-tabs {
     display: flex;
     gap: 16px;
     width: 100%;
@@ -101,11 +101,11 @@ body {
     margin-top: 40px;
 }
 
-.category-tabs::-webkit-scrollbar {
+.hoffer-category-tabs::-webkit-scrollbar {
     display: none;
 }
 
-.tab-item {
+.hoffer-tab-item {
     width: 210px;
     flex-shrink: 0;
     display: flex;
@@ -120,15 +120,15 @@ body {
     background: transparent;
 }
 
-.tab-item.active {
+.hoffer-tab-item.active {
     background: rgba(218, 224, 233, 0.35);
 }
 
-.tab-item.active .tab-indicator {
+.hoffer-tab-item.active .hoffer-tab-indicator {
     opacity: 1;
 }
 
-.tab-icon {
+.hoffer-tab-icon {
     width: 48px;
     height: 48px;
     display: flex;
@@ -137,18 +137,18 @@ body {
     margin-bottom: 8px;
 }
 
-.tab-icon svg,
-.tab-icon img {
+.hoffer-tab-icon svg,
+.hoffer-tab-icon img {
     width: 100%;
     height: 100%;
     fill: #ffffff;
 }
 
-.tab-icon img {
+.hoffer-tab-icon img {
     object-fit: contain;
 }
 
-.tab-label {
+.hoffer-tab-label {
     font-size: 24px;
     font-weight: 600;
     line-height: 32px;
@@ -156,19 +156,19 @@ body {
     white-space: nowrap;
 }
 
-.tab-item:not(.active) .tab-label {
+.hoffer-tab-item:not(.active) .hoffer-tab-label {
     font-weight: 400;
     /* Simulate bold text width to prevent layout shift */
     text-shadow: 0.06em 0 0 rgba(255, 255, 255, 0),
                  -0.06em 0 0 rgba(255, 255, 255, 0);
 }
 
-.tab-indicator {
+.hoffer-tab-indicator {
     display: none;
 }
 
 /* Filter Chips */
-.filter-chips {
+.hoffer-filter-chips {
     margin-top: 24px;
     display: flex;
     gap: 8px;
@@ -181,11 +181,11 @@ body {
     -ms-overflow-style: none;
 }
 
-.filter-chips::-webkit-scrollbar {
+.hoffer-filter-chips::-webkit-scrollbar {
     display: none;
 }
 
-.chip {
+.hoffer-chip {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -197,14 +197,14 @@ body {
     border-bottom: 3px solid transparent;
 }
 
-.chip.active {
+.hoffer-chip.active {
     border-bottom-color: #ed0226;
     border-radius: 8px 8px 0 0;
     margin-bottom: -8px;
     padding-bottom: 11px;
 }
 
-.chip-icon {
+.hoffer-chip-icon {
     width: 24px;
     height: 24px;
     border-radius: 50%;
@@ -215,27 +215,27 @@ body {
     flex-shrink: 0;
 }
 
-.chip-icon img {
+.hoffer-chip-icon img {
     width: 100%;
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
 }
 
-.chip-label {
+.hoffer-chip-label {
     font-size: 14px;
     font-weight: 600;
     line-height: 20px;
     color: #ffffff;
 }
 
-.chip:not(.active) .chip-label {
+.hoffer-chip:not(.active) .hoffer-chip-label {
     color: rgba(255, 255, 255, 0.5);
     font-weight: 400;
 }
 
 /* Cards Container */
-.cards-wrapper {
+.hoffer-cards-wrapper {
     display: flex;
     justify-content: center;
     position: relative;
@@ -243,7 +243,7 @@ body {
     max-width: 900px;
 }
 
-.cards-container {
+.hoffer-cards-container {
     display: flex;
     gap: 24px;
     overflow: hidden;
@@ -255,7 +255,7 @@ body {
 }
 
 /* Center the slider within the container for desktop */
-.cards-slider {
+.hoffer-cards-slider {
     justify-content: center;
     display: flex;
     gap: 26px;
@@ -272,7 +272,7 @@ body {
 }
 
 /* Package Card */
-.package-card {
+.hoffer-package-card {
     width: 280px;
     min-height: 298px;
     background: #ffffff;
@@ -284,7 +284,7 @@ body {
     overflow: visible;
 }
 
-.package-card-bg {
+.hoffer-package-card-bg {
     position: absolute;
     top: -1px;
     right: -1px;
@@ -297,7 +297,7 @@ body {
 }
 
 /* Halo Offer Background Card - Top Right Decorative Image */
-.package-card-halo {
+.hoffer-package-card-halo {
     position: absolute;
     top: -1px;
     right: -1px;
@@ -307,47 +307,47 @@ body {
     z-index: 1;
 }
 
-.package-card-content {
+.hoffer-package-card-content {
     padding: 24px 16px 16px;
     display: flex;
     flex-direction: column;
     gap: 24px;
 }
 
-.package-detail {
+.hoffer-package-detail {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-.package-name {
+.hoffer-package-name {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     color: #181c21;
 }
 
-.package-duration {
+.hoffer-package-duration {
     font-size: 24px;
     font-weight: 600;
     line-height: 32px;
     color: #181c21;
 }
 
-.package-extra {
+.hoffer-package-extra {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
     color: #757f90;
 }
 
-.package-price {
+.hoffer-package-price {
     display: flex;
     flex-direction: column;
     gap: 4px;
 }
 
-.price-original {
+.hoffer-price-original {
     font-size: 12px;
     font-weight: 400;
     line-height: 18px;
@@ -355,14 +355,14 @@ body {
     text-decoration: line-through;
 }
 
-.price-final {
+.hoffer-price-final {
     font-size: 24px;
     font-weight: 600;
     line-height: 32px;
     color: #ed0226;
 }
 
-.package-btn {
+.hoffer-package-btn {
     width: 100%;
     padding: 12px 16px;
     background: #ed0226;
@@ -376,14 +376,14 @@ body {
     transition: all 0.3s ease;
 }
 
-.package-btn:hover {
+.hoffer-package-btn:hover {
     background: #c4001e;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(237, 2, 38, 0.4);
 }
 
 /* Promo Ribbon */
-.promo-ribbon {
+.hoffer-promo-ribbon {
     position: absolute;
     top: -20px;
     left: -3px;
@@ -392,11 +392,11 @@ body {
     align-items: flex-start;
 }
 
-.ribbon-content {
+.hoffer-ribbon-content {
     display: flex;
     justify-items: center;
     align-items: center;
-    
+
     height: 32px;
     background: #001a41;
     padding: 4px 8px;
@@ -409,7 +409,7 @@ body {
 }
 
 /* Navigation Arrows */
-.nav-arrows {
+.hoffer-nav-arrows {
     position: absolute;
     top: 50%;
     left: 50.3%;
@@ -420,7 +420,7 @@ body {
     pointer-events: none;
 }
 
-.nav-arrow {
+.hoffer-nav-arrow {
     width: 40px;
     height: 40px;
     background: #ffffff;
@@ -435,30 +435,30 @@ body {
     transition: all 0.3s ease;
 }
 
-.nav-arrow:hover {
+.hoffer-nav-arrow:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
 }
 
-.nav-arrow:disabled {
+.hoffer-nav-arrow:disabled {
     cursor: not-allowed;
 }
 
-.nav-arrow:disabled img {
+.hoffer-nav-arrow:disabled img {
     filter: brightness(0) saturate(100%) invert(92%) sepia(7%) saturate(172%) hue-rotate(191deg) brightness(93%) contrast(87%);
 }
 
-.nav-arrow:disabled:hover {
+.hoffer-nav-arrow:disabled:hover {
     transform: scale(1);
 }
 
-.nav-arrow img {
+.hoffer-nav-arrow img {
     width: 24px;
     height: 24px;
 }
 
 /* Pagination */
-.pagination {
+.hoffer-pagination {
     display: flex;
     gap: 4px;
     align-items: center;
@@ -468,13 +468,13 @@ body {
     bottom: 10px;
 }
 
-.pagination-dot {
+.hoffer-pagination-dot {
     background: rgba(255, 255, 255, 0.4);
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-.pagination-dot.active {
+.hoffer-pagination-dot.active {
     background: #ffffff;
 }
 
@@ -489,7 +489,7 @@ body {
 }
 
 /* Subscription Modal / Bottom Sheet */
-.subscription-modal {
+.hoffer-subscription-modal {
     position: fixed;
     inset: 0;
     z-index: 1000;
@@ -501,18 +501,18 @@ body {
     transition: all 0.3s ease;
 }
 
-.subscription-modal.active {
+.hoffer-subscription-modal.active {
     opacity: 1;
     visibility: visible;
 }
 
-.modal-backdrop {
+.hoffer-modal-backdrop {
     position: absolute;
     inset: 0;
     background: #19315399;
 }
 
-.modal-container {
+.hoffer-modal-container {
     position: relative;
     width: 100%;
     max-width: 720px;
@@ -526,12 +526,12 @@ body {
     flex-direction: column;
 }
 
-.subscription-modal.active .modal-container {
+.hoffer-subscription-modal.active .hoffer-modal-container {
     transform: translateY(0);
 }
 
 /* Close Button */
-.modal-close {
+.hoffer-modal-close {
     position: absolute;
     top: 16px;
     right: 16px;
@@ -548,18 +548,18 @@ body {
     transition: all 0.2s ease;
 }
 
-.modal-close:hover {
+.hoffer-modal-close:hover {
     background: rgba(255, 255, 255, 0.3);
 }
 
-.modal-close svg {
+.hoffer-modal-close svg {
     width: 20px;
     height: 20px;
     color: #ffffff;
 }
 
 /* Modal Header */
-.modal-header {
+.hoffer-modal-header {
     background: linear-gradient(76.81deg, #B90024 15.71%, #FF0025 68.97%, #FD195E 94.61%);
     padding: 0 48px;
     padding-top: 56px;
@@ -568,7 +568,7 @@ body {
     width: 100%;
 }
 
-.modal-promo-badge {
+.hoffer-modal-promo-badge {
     position: absolute;
     left: 0;
     top: 20px;
@@ -583,7 +583,7 @@ body {
     text-transform: uppercase;
 }
 
-.modal-title {
+.hoffer-modal-title {
     font-size: 22px;
     font-weight: 700;
     color: #ffffff;
@@ -591,7 +591,7 @@ body {
     margin-top: 16px;
 }
 
-.modal-title-desc{
+.hoffer-modal-title-desc{
     display: flex ;
     gap: 24px;
     align-items: center;
@@ -599,13 +599,13 @@ body {
     margin-top: 8px;
 }
 
-.modal-title-price{
+.hoffer-modal-title-price{
     font-weight: 700;
     font-size: 32px;
     color: white;
 }
 
-.modal-title-validity{
+.hoffer-modal-title-validity{
     background: #FCF4F4;
     border-radius: 8px;
     font-size: 16px;
@@ -614,26 +614,26 @@ body {
 }
 
 /* Modal Pricing */
-.modal-pricing {
+.hoffer-modal-pricing {
     padding: 20px 24px;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.price-section {
+.hoffer-price-section {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 16px;
 }
 
-.modal-price {
+.hoffer-modal-price {
     font-size: 32px;
     font-weight: 700;
     color: #ed0226;
     line-height: 1;
 }
 
-.modal-validity {
+.hoffer-modal-validity {
     background: #f5f5f5;
     color: #333333;
     font-size: 13px;
@@ -644,7 +644,7 @@ body {
 }
 
 /* Data Plan Section */
-.modal-data-plan {
+.hoffer-modal-data-plan {
     padding-top: 212px;
     padding-left: 48px;
     padding-right: 48px;
@@ -654,14 +654,14 @@ body {
     max-height: 350px;
 }
 
-.data-plan-row {
+.hoffer-data-plan-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 24px;
 }
 
-.data-plan-label {
+.hoffer-data-plan-label {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -669,29 +669,29 @@ body {
     font-weight: 700;
 }
 
-.globe-icon {
+.hoffer-globe-icon {
     width: 20px;
     height: 20px;
     color: #757f90;
 }
 
-.data-plan-value {
+.hoffer-data-plan-value {
     font-size: 24px;
     font-weight: 700;
     color: #181c21;
 }
 
 /* Expandable Sections */
-.modal-expandable {
+.hoffer-modal-expandable {
     padding: 0 24px;
     overflow-y: auto;
 }
 
-.expandable-section:not(:last-child) {
+.hoffer-expandable-section:not(:last-child) {
     border-bottom: 1px solid #f0f0f0;
 }
 
-.expandable-header {
+.hoffer-expandable-header {
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -703,41 +703,41 @@ body {
     transition: all 0.2s ease;
 }
 
-.expandable-header span {
+.hoffer-expandable-header span {
     font-size: 15px;
     font-weight: 600;
     color: #181c21;
 }
 
-.expandable-header .chevron {
+.hoffer-expandable-header .hoffer-chevron {
     width: 20px;
     height: 20px;
     color: #a0a0a0;
     transition: transform 0.3s ease;
 }
 
-.expandable-section.active .chevron {
+.hoffer-expandable-section.active .hoffer-chevron {
     transform: rotate(180deg);
 }
 
-.expandable-content {
+.hoffer-expandable-content {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease;
 }
 
-.expandable-section.active .expandable-content {
+.hoffer-expandable-section.active .hoffer-expandable-content {
     max-height: 500px;
 }
 
-.detail-list,
-.terms-list {
+.hoffer-detail-list,
+.hoffer-terms-list {
     list-style: none;
     padding-bottom: 16px;
 }
 
-.detail-list li,
-.terms-list li {
+.hoffer-detail-list li,
+.hoffer-terms-list li {
     font-size: 14px;
     color: #757f90;
     line-height: 1.6;
@@ -746,8 +746,8 @@ body {
     margin-bottom: 8px;
 }
 
-.detail-list li:before,
-.terms-list li:before {
+.hoffer-detail-list li:before,
+.hoffer-terms-list li:before {
     content: '•';
     position: absolute;
     left: 0;
@@ -756,12 +756,12 @@ body {
 }
 
 /* Modal CTA */
-.modal-cta {
+.hoffer-modal-cta {
     padding: 20px 24px;
     padding-bottom: 28px;
 }
 
-.modal-subscribe-btn {
+.hoffer-modal-subscribe-btn {
     width: 100%;
     padding: 16px 24px;
     background: #ED0226;
@@ -774,68 +774,68 @@ body {
     transition: all 0.3s ease;
 }
 
-.modal-subscribe-btn:hover {
+.hoffer-modal-subscribe-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 6px 24px rgba(237, 2, 38, 0.4);
 }
 
-.modal-subscribe-btn:active {
+.hoffer-modal-subscribe-btn:active {
     transform: translateY(0);
 }
 
 /* Mobile Bottom Sheet Styles */
 @media (max-width: 768px) {
-    .subscription-modal {
+    .hoffer-subscription-modal {
         align-items: flex-end;
     }
 
-    .modal-container {
+    .hoffer-modal-container {
         max-width: 100%;
         border-radius: 24px 24px 0 0;
         transform: translateY(100%);
         max-height: 85vh;
     }
 
-    .subscription-modal.active .modal-container {
+    .hoffer-subscription-modal.active .hoffer-modal-container {
         transform: translateY(0);
     }
 
-    .modal-close {
+    .hoffer-modal-close {
         top: 12px;
         right: 12px;
         background: rgba(255, 255, 255, 0.15);
     }
 
-    .modal-header {
+    .hoffer-modal-header {
         padding: 48px 20px 20px;
     }
 
-    .modal-title {
+    .hoffer-modal-title {
         font-size: 20px;
     }
 
-    .modal-pricing {
+    .hoffer-modal-pricing {
         padding: 16px 20px;
     }
 
-    .modal-price {
+    .hoffer-modal-price {
         font-size: 28px;
     }
 
-    .modal-data-plan,
-    .modal-expandable {
+    .hoffer-modal-data-plan,
+    .hoffer-modal-expandable {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .modal-cta {
+    .hoffer-modal-cta {
         padding: 16px 20px 24px;
     }
 }
 
 /* Desktop Popup Enhancement */
 @media (min-width: 769px) {
-    .subscription-modal::before {
+    .hoffer-subscription-modal::before {
         content: '';
         position: absolute;
         top: 50%;
@@ -852,86 +852,86 @@ body {
 
 /* Responsive */
 @media (max-width: 1024px) {
-    .category-tabs {
+    .hoffer-category-tabs {
         max-width: 100%;
     }
 
-    .filter-chips {
+    .hoffer-filter-chips {
         max-width: 100%;
     }
 
-    .cards-wrapper,
-    .nav-arrows {
+    .hoffer-cards-wrapper,
+    .hoffer-nav-arrows {
         max-width: 100%;
     }
 }
 
 @media (max-width: 768px) {
     /* Hide navigation arrows on mobile */
-    .nav-arrows {
+    .hoffer-nav-arrows {
         display: none;
     }
 
     /* Remove horizontal padding for full-width slider on mobile */
-    .widget-content {
+    .hoffer-widget-content {
         padding: 40px 0;
     }
 
     /* Add horizontal padding to non-slider elements */
-    .widget-title,
-    .category-tabs,
-    .filter-chips,
-    .pagination {
+    .hoffer-widget-title,
+    .hoffer-category-tabs,
+    .hoffer-filter-chips,
+    .hoffer-pagination {
         padding-left: 20px;
         padding-right: 20px;
     }
 
-    .widget-title {
+    .hoffer-widget-title {
         font-size: 24px;
         line-height: 36px;
         width: 80%;
     }
 
-    .category-tabs {
+    .hoffer-category-tabs {
         gap: 12px;
         padding: 4px 16px;
         margin-top: 24px;
     }
 
-    .tab-item {
+    .hoffer-tab-item {
         width: 168px;
     }
 
-    .tab-label {
+    .hoffer-tab-label {
         font-size: 18px;
         line-height: 24px;
     }
 
-    .tab-icon {
+    .hoffer-tab-icon {
         width: 36px;
         height: 36px;
     }
 
     /* Package Card Mobile */
-    .package-card {
+    .hoffer-package-card {
         width: 248px;
     }
 
-    .package-card-bg {
+    .hoffer-package-card-bg {
         width: 248px;
     }
 
-    .package-card-halo {
+    .hoffer-package-card-halo {
         width: 100px;
         height: 100px;
     }
 
-    .cards-container {
+    .hoffer-cards-container {
         justify-content: unset;
         padding-left: 16px;
     }
 
-    .cards-slider {
+    .hoffer-cards-slider {
         gap: 24px;
         margin: 0;
     }

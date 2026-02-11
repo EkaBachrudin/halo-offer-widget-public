@@ -1,5 +1,3 @@
-// Data structure for categories, chips, and cards
-// Array format for easy API integration
 const categoryData = [
     {
         category: 'video',
@@ -151,7 +149,7 @@ const sliderConfig = {
 
 // Get actual card width from DOM
 function getCardWidth() {
-    const card = document.querySelector('.package-card');
+    const card = document.querySelector('.hoffer-package-card');
     return card ? card.offsetWidth : sliderConfig.cardWidth;
 }
 
@@ -168,8 +166,8 @@ function getCurrentCategory() {
 }
 
 // Elements
-const slider = document.getElementById('cardsSlider');
-const loadingOverlay = document.getElementById('loadingOverlay');
+const slider = document.getElementById('hofferCardsSlider');
+const loadingOverlay = document.getElementById('hofferLoadingOverlay');
 
 // Hide loading overlay
 function hideLoading() {
@@ -177,10 +175,10 @@ function hideLoading() {
         loadingOverlay.classList.add('hidden');
     }
 }
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const pagination = document.getElementById('pagination');
-const navArrows = document.querySelector('.nav-arrows');
+const prevBtn = document.getElementById('hofferPrevBtn');
+const nextBtn = document.getElementById('hofferNextBtn');
+const pagination = document.getElementById('hofferPagination');
+const navArrows = document.querySelector('.hoffer-nav-arrows');
 
 // Calculate slide width dynamically
 function getSlideWidth() {
@@ -189,27 +187,27 @@ function getSlideWidth() {
 
 // Render tabs dynamically from categoryData array
 function renderTabs() {
-    const tabsContainer = document.querySelector('.category-tabs');
+    const tabsContainer = document.querySelector('.hoffer-category-tabs');
     tabsContainer.innerHTML = '';
 
     categoryData.forEach((item, index) => {
         const tab = document.createElement('div');
-        tab.className = 'tab-item' + (index === 0 ? ' active' : '');
+        tab.className = 'hoffer-tab-item' + (index === 0 ? ' active' : '');
         tab.dataset.index = index;
 
         tab.innerHTML = `
-            <div class="tab-icon">
+            <div class="hoffer-tab-icon">
                 <img src="assets/category-icons/${item.iconFile}" alt="${item.label}">
             </div>
-            <span class="tab-label">${item.label}</span>
-            <div class="tab-indicator"></div>
+            <span class="hoffer-tab-label">${item.label}</span>
+            <div class="hoffer-tab-indicator"></div>
         `;
 
         tabsContainer.appendChild(tab);
     });
 
     // Re-attach tab event listeners
-    const tabs = document.querySelectorAll('.tab-item');
+    const tabs = document.querySelectorAll('.hoffer-tab-item');
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             tabs.forEach(t => t.classList.remove('active'));
@@ -236,23 +234,23 @@ function renderSubCategory(categoryIndex) {
     const data = categoryData[categoryIndex];
     if (!data) return;
 
-    const chipsContainer = document.querySelector('.filter-chips');
+    const chipsContainer = document.querySelector('.hoffer-filter-chips');
     chipsContainer.innerHTML = '';
 
     data.chips.forEach((chipData, index) => {
         const chip = document.createElement('div');
-        chip.className = 'chip' + (index === 0 ? ' active' : '');
+        chip.className = 'hoffer-chip' + (index === 0 ? ' active' : '');
         chip.dataset.filter = chipData.id;
 
         chip.innerHTML = `
-            <div class="chip-icon">
+            <div class="hoffer-chip-icon">
                 <img src="assets/sub-category-icons/${chipData.iconFile}" alt="${chipData.label}">
             </div>
-            <span class="chip-label">${chipData.label}</span>
+            <span class="hoffer-chip-label">${chipData.label}</span>
         `;
 
         chip.addEventListener('click', () => {
-            document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+            document.querySelectorAll('.hoffer-chip').forEach(c => c.classList.remove('active'));
             chip.classList.add('active');
             currentChip = chipData.id;
             currentOffset = 0;
@@ -284,11 +282,11 @@ function renderCards(categoryIndex, chip) {
 
     cards.forEach(cardData => {
         const card = document.createElement('div');
-        card.className = 'package-card';
+        card.className = 'hoffer-package-card';
 
         const promoHtml = cardData.promo ? `
-            <div class="promo-ribbon">
-                <div class="ribbon-content">${cardData.promo}</div>
+            <div class="hoffer-promo-ribbon">
+                <div class="hoffer-ribbon-content">${cardData.promo}</div>
                 <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M0 0.339844H2V9.33984C0.895431 9.33984 0 8.44441 0 7.33984V0.339844Z" fill="#FF0025"/>
                     <path d="M0 0H8L5.12873 0.628091C2.13432 1.28312 0 3.93478 0 7V0Z" fill="#001A41"/>
@@ -298,24 +296,24 @@ function renderCards(categoryIndex, chip) {
         ` : '';
 
         const originalPriceHtml = cardData.originalPrice !== cardData.finalPrice
-            ? `<span class="price-original">${cardData.originalPrice}</span>`
+            ? `<span class="hoffer-price-original">${cardData.originalPrice}</span>`
             : '';
 
         card.innerHTML = `
-            <img src="assets/components/halo-offer-bg-card.svg" alt="" class="package-card-halo">
-            <div class="package-card-bg"></div>
+            <img src="assets/components/halo-offer-bg-card.svg" alt="" class="hoffer-package-card-halo">
+            <div class="hoffer-package-card-bg"></div>
             ${promoHtml}
-            <div class="package-card-content">
-                <div class="package-detail">
-                    <h3 class="package-name">${cardData.name}</h3>
-                    <p class="package-duration">${cardData.duration}</p>
-                    <p class="package-extra">${cardData.extra}</p>
+            <div class="hoffer-package-card-content">
+                <div class="hoffer-package-detail">
+                    <h3 class="hoffer-package-name">${cardData.name}</h3>
+                    <p class="hoffer-package-duration">${cardData.duration}</p>
+                    <p class="hoffer-package-extra">${cardData.extra}</p>
                 </div>
-                <div class="package-price">
+                <div class="hoffer-package-price">
                     ${originalPriceHtml}
-                    <span class="price-final">${cardData.finalPrice}</span>
+                    <span class="hoffer-price-final">${cardData.finalPrice}</span>
                 </div>
-                <button class="package-btn subscribe-trigger">Berlangganan</button>
+                <button class="hoffer-package-btn subscribe-trigger">Berlangganan</button>
             </div>
         `;
 
@@ -333,7 +331,7 @@ function initPagination() {
 
     for (let i = 0; i < totalSlides; i++) {
         const dot = document.createElement('div');
-        dot.className = 'pagination-dot' + (i === 0 ? ' active' : '');
+        dot.className = 'hoffer-pagination-dot' + (i === 0 ? ' active' : '');
         dot.style.width = i === 0 ? '32px' : '8px';
         dot.style.height = '8px';
         dot.addEventListener('click', () => goToSlide(i));
@@ -351,7 +349,7 @@ function updateSlider() {
 
     // Update pagination
     const currentSlide = Math.round(currentOffset / (getSlideWidth() * sliderConfig.cardsPerView));
-    const dots = pagination.querySelectorAll('.pagination-dot');
+    const dots = pagination.querySelectorAll('.hoffer-pagination-dot');
     dots.forEach((dot, index) => {
         dot.classList.toggle('active', index === currentSlide);
         dot.style.width = index === currentSlide ? '32px' : '8px';
@@ -402,14 +400,14 @@ function updateBackground(categoryIndex) {
     const data = categoryData[categoryIndex];
     if (!data?.background) return;
 
-    const widgetBg = document.querySelector('.widget-bg');
+    const widgetBg = document.querySelector('.hoffer-widget-bg');
     // Set background image directly from categoryData
     widgetBg.style.backgroundImage = `url('${data.background}')`;
 }
 
 // Handle window resize
 function handleResize() {
-    const containerWidth = document.querySelector('.cards-container').offsetWidth;
+    const containerWidth = document.querySelector('.hoffer-cards-container').offsetWidth;
 
     if (containerWidth < 600) {
         sliderConfig.cardsPerView = 1;
@@ -445,7 +443,7 @@ let touchStartX = 0;
 let touchCurrentX = 0;
 let touchStartOffset = 0;
 let isDragging = false;
-const sliderContainer = document.querySelector('.cards-container');
+const sliderContainer = document.querySelector('.hoffer-cards-container');
 
 sliderContainer.addEventListener('touchstart', (e) => {
     touchStartX = e.touches[0].clientX;
@@ -534,15 +532,15 @@ let modalTitle, modalTitlePrice, modalTitleValidity, modalExtra, modalPromoBadge
 
 // Initialize modal elements
 function initModalElements() {
-    modal = document.getElementById('subscriptionModal');
-    modalBackdrop = document.getElementById('modalBackdrop');
-    modalClose = document.getElementById('modalClose');
-    modalSubscribeBtn = document.getElementById('modalSubscribeBtn');
-    modalTitle = document.getElementById('modalTitle');
-    modalTitlePrice = document.querySelector('.modal-title-price');
-    modalTitleValidity = document.querySelector('.modal-title-validity');
-    modalExtra = document.getElementById('modalExtra');
-    modalPromoBadge = document.getElementById('modalPromoBadge');
+    modal = document.getElementById('hofferSubscriptionModal');
+    modalBackdrop = document.getElementById('hofferModalBackdrop');
+    modalClose = document.getElementById('hofferModalClose');
+    modalSubscribeBtn = document.getElementById('hofferModalSubscribeBtn');
+    modalTitle = document.getElementById('hofferModalTitle');
+    modalTitlePrice = document.querySelector('.hoffer-modal-title-price');
+    modalTitleValidity = document.querySelector('.hoffer-modal-title-validity');
+    modalExtra = document.getElementById('hofferModalExtra');
+    modalPromoBadge = document.getElementById('hofferModalPromoBadge');
 
     // Close modal on backdrop click
     modalBackdrop.addEventListener('click', closeModal);
@@ -551,13 +549,13 @@ function initModalElements() {
     modalClose.addEventListener('click', closeModal);
 
     // Expandable sections functionality (accordion behavior)
-    document.querySelectorAll('.expandable-header').forEach(header => {
+    document.querySelectorAll('.hoffer-expandable-header').forEach(header => {
         header.addEventListener('click', () => {
-            const section = header.closest('.expandable-section');
+            const section = header.closest('.hoffer-expandable-section');
             const isCurrentlyActive = section.classList.contains('active');
 
             // Close all expandable sections
-            document.querySelectorAll('.expandable-section').forEach(s => {
+            document.querySelectorAll('.hoffer-expandable-section').forEach(s => {
                 s.classList.remove('active');
             });
 
@@ -592,7 +590,7 @@ function openModal(cardData) {
     }
 
     // Reset expandable sections
-    document.querySelectorAll('.expandable-section').forEach(section => {
+    document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
         section.classList.remove('active');
     });
 
@@ -607,7 +605,7 @@ function closeModal() {
     document.body.style.overflow = '';
 
     // Reset expandable sections
-    document.querySelectorAll('.expandable-section').forEach(section => {
+    document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
         section.classList.remove('active');
     });
 }
@@ -621,7 +619,7 @@ document.addEventListener('keydown', (e) => {
 
 // Event delegation for package card clicks
 slider.addEventListener('click', (e) => {
-    const card = e.target.closest('.package-card');
+    const card = e.target.closest('.hoffer-package-card');
     if (card) {
         const cardIndex = Array.from(slider.children).indexOf(card);
         const categoryData = getCurrentCategory();
