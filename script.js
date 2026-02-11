@@ -535,10 +535,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Event delegation for subscribe buttons
+// Event delegation for package card clicks
 slider.addEventListener('click', (e) => {
-    if (e.target.classList.contains('subscribe-trigger')) {
-        const card = e.target.closest('.package-card');
+    const card = e.target.closest('.package-card');
+    if (card) {
         const cardIndex = Array.from(slider.children).indexOf(card);
         const categoryData = getCurrentCategory();
         const cardGroup = categoryData.cards.find(c => c.chipId === currentChip);
