@@ -512,6 +512,8 @@ body {
     padding: 0 48px;
     padding-top: 56px;
     border-bottom-right-radius: 80px;
+    position: absolute;
+    width: 100%;
 }
 
 .modal-promo-badge {
@@ -591,23 +593,26 @@ body {
 
 /* Data Plan Section */
 .modal-data-plan {
-    padding: 16px 24px;
+    padding-top: 212px;
+    padding-left: 48px;
+    padding-right: 48px;
     border-bottom: 1px solid #f0f0f0;
+    background-color: #FCF4F4;
 }
 
 .data-plan-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 24px;
 }
 
 .data-plan-label {
     display: flex;
     align-items: center;
     gap: 8px;
-    color: #757f90;
     font-size: 14px;
-    font-weight: 500;
+    font-weight: 700;
 }
 
 .globe-icon {
@@ -617,7 +622,7 @@ body {
 }
 
 .data-plan-value {
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 700;
     color: #181c21;
 }
@@ -708,13 +713,12 @@ body {
     padding: 16px 24px;
     background: linear-gradient(135deg, #ed0226 0%, #c4001e 100%);
     border: none;
-    border-radius: 16px;
+    border-radius: 24px;
     color: #ffffff;
     font-size: 16px;
     font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(237, 2, 38, 0.3);
 }
 
 .modal-subscribe-btn:hover {
