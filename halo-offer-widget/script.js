@@ -5,7 +5,7 @@ const categoryData = [
         category: 'video',
         label: 'Video',
         iconFile: 'moves.svg',
-        background: "assets/backgrounds/video.png",
+        background: "https://www.racecar-engineering.com/wp-content/uploads/2022/08/F_296GT3_stills_beauty_v07_ext_front_view_n3_PH-2-scaled.jpg",
         chips: [
             { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
             { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
@@ -169,6 +169,14 @@ function getCurrentCategory() {
 
 // Elements
 const slider = document.getElementById('cardsSlider');
+const loadingOverlay = document.getElementById('loadingOverlay');
+
+// Hide loading overlay
+function hideLoading() {
+    if (loadingOverlay) {
+        loadingOverlay.classList.add('hidden');
+    }
+}
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const pagination = document.getElementById('pagination');
@@ -640,6 +648,8 @@ if (document.readyState === 'loading') {
         updateBackground(currentCategoryIndex);
         renderSubCategory(currentCategoryIndex);
         renderCards(currentCategoryIndex, currentChip);
+        // Hide loading after render complete
+        hideLoading();
     });
 } else {
     initModalElements();
@@ -648,4 +658,6 @@ if (document.readyState === 'loading') {
     updateBackground(currentCategoryIndex);
     renderSubCategory(currentCategoryIndex);
     renderCards(currentCategoryIndex, currentChip);
+    // Hide loading after render complete
+    hideLoading();
 }
