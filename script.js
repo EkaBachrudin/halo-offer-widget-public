@@ -461,7 +461,7 @@ function handleSwipe() {
 
 // Modal Elements (initialized after DOM is ready)
 let modal, modalBackdrop, modalClose, modalSubscribeBtn;
-let modalTitle, modalPrice, modalValidity, modalExtra, modalPromoBadge;
+let modalTitle, modalTitlePrice, modalTitleValidity, modalExtra, modalPromoBadge;
 
 // Initialize modal elements
 function initModalElements() {
@@ -470,8 +470,8 @@ function initModalElements() {
     modalClose = document.getElementById('modalClose');
     modalSubscribeBtn = document.getElementById('modalSubscribeBtn');
     modalTitle = document.getElementById('modalTitle');
-    modalPrice = document.getElementById('modalPrice');
-    modalValidity = document.getElementById('modalValidity');
+    modalTitlePrice = document.querySelector('.modal-title-price');
+    modalTitleValidity = document.querySelector('.modal-title-validity');
     modalExtra = document.getElementById('modalExtra');
     modalPromoBadge = document.getElementById('modalPromoBadge');
 
@@ -500,8 +500,8 @@ function initModalElements() {
 function openModal(cardData) {
     // Update modal content
     modalTitle.textContent = cardData.name;
-    modalPrice.textContent = cardData.finalPrice;
-    modalValidity.textContent = cardData.duration;
+    modalTitlePrice.textContent = cardData.finalPrice;
+    modalTitleValidity.textContent = cardData.duration;
     modalExtra.textContent = cardData.extra;
 
     // Show/hide promo badge
