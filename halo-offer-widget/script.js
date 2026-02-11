@@ -3,7 +3,7 @@ const categoryData = [
         category: 'video',
         label: 'Video',
         iconFile: 'moves.svg',
-        background: "https://www.racecar-engineering.com/wp-content/uploads/2022/08/F_296GT3_stills_beauty_v07_ext_front_view_n3_PH-2-scaled.jpg",
+        background: "assets/backgrounds/video.png",
         chips: [
             { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
             { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
@@ -568,7 +568,7 @@ function initModalElements() {
 
     // Subscribe button in modal
     modalSubscribeBtn.addEventListener('click', () => {
-        alert('Terima kasih! Berlangganan berhasil diproses.');
+        // Action here - e.g., redirect to subscription page
         closeModal();
     });
 }
