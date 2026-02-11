@@ -598,6 +598,8 @@ body {
     padding-right: 48px;
     border-bottom: 1px solid #f0f0f0;
     background-color: #FCF4F4;
+    overflow-y: auto;
+    max-height: 350px;
 }
 
 .data-plan-row {
@@ -711,7 +713,7 @@ body {
 .modal-subscribe-btn {
     width: 100%;
     padding: 16px 24px;
-    background: linear-gradient(135deg, #ed0226 0%, #c4001e 100%);
+    background: #ED0226;
     border: none;
     border-radius: 24px;
     color: #ffffff;
