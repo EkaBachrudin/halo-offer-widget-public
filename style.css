@@ -208,6 +208,9 @@ body {
     overflow: hidden;
     padding: 18px 0 0 8px;
     margin-top: 20px;
+    /* Enable touch gesture handling for mobile swipe */
+    touch-action: pan-y pinch-zoom;
+    -webkit-overflow-scrolling: touch;
 }
 
 /* Center the slider within the container for desktop */
@@ -217,6 +220,14 @@ body {
     gap: 26px;
     transition: transform 0.5s ease;
     margin: 0;
+    /* Prevent text selection during drag */
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    /* Improve touch handling */
+    touch-action: none;
+    will-change: transform;
 }
 
 /* Package Card */

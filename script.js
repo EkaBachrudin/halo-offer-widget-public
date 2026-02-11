@@ -432,32 +432,93 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// Touch/Swipe support for mobile
+// Touch/Swipe support for mobile with real-time drag
 let touchStartX = 0;
-let touchEndX = 0;
+let touchCurrentX = 0;
+let touchStartOffset = 0;
+let isDragging = false;
 const sliderContainer = document.querySelector('.cards-container');
 
 sliderContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+    touchStartX = e.touches[0].clientX;
+    touchCurrentX = touchStartX;
+    touchStartOffset = currentOffset;
+    isDragging = true;
+
+    // Disable transition during drag for immediate feedback
+    slider.style.transition = 'none';
+}, { passive: true });
+
+sliderContainer.addEventListener('touchmove', (e) => {
+    if (!isDragging) return;
+
+    touchCurrentX = e.touches[0].clientX;
+    const diff = touchStartX - touchCurrentX;
+
+    // Calculate new offset with resistance at boundaries
+    let newOffset = touchStartOffset + diff;
+
+    // Add resistance when going beyond boundaries
+    if (newOffset < 0) {
+        newOffset = diff * 0.3; // 30% resistance at start
+    } else if (newOffset > maxOffset) {
+        const beyondEnd = newOffset - maxOffset;
+        newOffset = maxOffset + (beyondEnd * 0.3); // 30% resistance at end
+    }
+
+    // Apply the transform directly for real-time feedback
+    slider.style.transform = `translateX(-${newOffset}px)`;
 }, { passive: true });
 
 sliderContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-}, { passive: true });
+    if (!isDragging) return;
+    isDragging = false;
 
-function handleSwipe() {
-    const swipeThreshold = 50;
+    // Re-enable transition for smooth snap
+    slider.style.transition = 'transform 0.5s ease';
+
+    const touchEndX = e.changedTouches[0].clientX;
     const diff = touchStartX - touchEndX;
+    const velocity = diff / (Date.now() - e.timeStamp); // Calculate swipe velocity
 
-    if (Math.abs(diff) > swipeThreshold) {
-        if (diff > 0 && !nextBtn.disabled) {
-            nextBtn.click();
-        } else if (diff < 0 && !prevBtn.disabled) {
-            prevBtn.click();
+    // Determine which slide to snap to
+    const slideWidth = getSlideWidth();
+    const draggedOffset = touchStartOffset + diff;
+
+    // Calculate target slide based on drag distance and velocity
+    let targetSlide = Math.round(draggedOffset / slideWidth);
+
+    // Apply velocity-based snap for fast swipes
+    if (Math.abs(velocity) > 0.5) {
+        if (velocity > 0) {
+            targetSlide = Math.ceil(draggedOffset / slideWidth);
+        } else {
+            targetSlide = Math.floor(draggedOffset / slideWidth);
         }
     }
-}
+
+    // Calculate final offset
+    let finalOffset = targetSlide * slideWidth;
+
+    // Constrain within bounds
+    finalOffset = Math.max(0, Math.min(finalOffset, maxOffset));
+
+    // Snap to nearest card boundary
+    const cardIndex = Math.round(finalOffset / slideWidth);
+    currentOffset = cardIndex * slideWidth;
+    currentOffset = Math.max(0, Math.min(currentOffset, maxOffset));
+
+    updateSlider();
+});
+
+sliderContainer.addEventListener('touchcancel', () => {
+    if (!isDragging) return;
+    isDragging = false;
+
+    // Re-enable transition and snap back to current position
+    slider.style.transition = 'transform 0.5s ease';
+    updateSlider();
+});
 
 // Modal Elements (initialized after DOM is ready)
 let modal, modalBackdrop, modalClose, modalSubscribeBtn;
