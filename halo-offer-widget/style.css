@@ -290,6 +290,11 @@ body {
     will-change: transform;
 }
 
+/* When items are 3 or less, increase gap to 26px */
+.hoffer-cards-slider:has(.hoffer-package-card:nth-last-child(-n+3):first-child) {
+    gap: 26px;
+}
+
 /* Package Card */
 .hoffer-package-card {
     width: 280px;
