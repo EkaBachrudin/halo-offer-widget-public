@@ -203,8 +203,9 @@
             config.cardsPerView = 3;
         }
 
-        // Update max offset based on current active group's cards
-        state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
+        // Total slides = number of positions we can slide to
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
+        state.maxOffset = slideWidth * (totalSlides - 1);
 
         // Apply transform to active slider (reset all sliders first, then apply to active)
         const allSliders = document.querySelectorAll('[data-hoffer-slider]');
@@ -220,8 +221,7 @@
             }
         });
 
-        // Update navigation buttons - use slide-based logic for more accuracy
-        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        // Update navigation buttons - slide 1 card at a time
         const isAtFirstSlide = state.currentSlide <= 0;
         const isAtLastSlide = state.currentSlide >= totalSlides - 1 || state.totalCards <= config.cardsPerView;
 
@@ -238,7 +238,8 @@
     function updatePagination() {
         if (!elements.pagination) return;
 
-        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        // Total slides = number of positions we can slide to
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
 
         elements.pagination.innerHTML = '';
 
@@ -254,9 +255,11 @@
 
     function updateNavigationVisibility() {
         const isMobile = window.innerWidth <= 768;
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
 
         if (elements.navArrows) {
-            if (state.totalCards <= 3 || isMobile) {
+            // Hide arrows if only 1 slide position available or on mobile
+            if (totalSlides <= 1 || isMobile) {
                 elements.navArrows.style.display = 'none';
             } else {
                 elements.navArrows.style.display = 'flex';
@@ -264,7 +267,8 @@
         }
 
         if (elements.pagination) {
-            if (isMobile || (state.totalCards <= 3 && !isMobile)) {
+            // Hide pagination if only 1 slide position or on mobile
+            if (isMobile || totalSlides <= 1) {
                 elements.pagination.style.display = 'none';
             } else {
                 elements.pagination.style.display = 'flex';
@@ -273,29 +277,29 @@
     }
 
     function goToSlide(index) {
-        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        // Total slides = number of positions we can slide to
+        // e.g., 9 cards - 3 visible + 1 = 7 possible positions
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
         state.currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
 
+        // Offset = slide index × slide width (move 1 card at a time)
         const slideWidth = getSlideWidth();
         state.currentOffset = state.currentSlide * slideWidth;
-        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
     function slidePrev() {
-        const slideWidth = getSlideWidth();
         state.currentSlide = Math.max(0, state.currentSlide - 1);
+        const slideWidth = getSlideWidth();
         state.currentOffset = state.currentSlide * slideWidth;
-        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
     function slideNext() {
-        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
         state.currentSlide = Math.min(state.currentSlide + 1, totalSlides - 1);
         const slideWidth = getSlideWidth();
         state.currentOffset = state.currentSlide * slideWidth;
-        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
@@ -360,26 +364,26 @@
         const touchEndX = e.changedTouches[0].clientX;
         const diff = touchState.startX - touchEndX;
         const slideWidth = getSlideWidth();
+        const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
         const draggedOffset = touchState.startOffset + diff;
 
+        // Calculate target slide based on dragged offset (1 card per slide)
         let targetSlide = Math.round(draggedOffset / slideWidth);
 
         // Velocity-based snap
         const velocity = diff / (Date.now() - e.timeStamp);
         if (Math.abs(velocity) > 0.5) {
             if (velocity > 0) {
-                targetSlide = Math.ceil(draggedOffset / slideWidth);
+                targetSlide = Math.min(targetSlide + 1, totalSlides - 1);
             } else {
-                targetSlide = Math.floor(draggedOffset / slideWidth);
+                targetSlide = Math.max(targetSlide - 1, 0);
             }
         }
 
-        let finalOffset = targetSlide * slideWidth;
-        finalOffset = Math.max(0, Math.min(finalOffset, state.maxOffset));
-
-        state.currentSlide = Math.round(finalOffset / slideWidth);
+        // Clamp target slide to valid range
+        targetSlide = Math.max(0, Math.min(targetSlide, totalSlides - 1));
+        state.currentSlide = targetSlide;
         state.currentOffset = state.currentSlide * slideWidth;
-        state.currentOffset = Math.max(0, Math.min(state.currentOffset, state.maxOffset));
 
         updateSlider();
     }
@@ -539,18 +543,19 @@
         window.addEventListener('resize', () => {
             // Recalculate
             const slideWidth = getSlideWidth();
-            state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
+            const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
+            state.maxOffset = slideWidth * (totalSlides - 1);
 
             // Recalculate current slide based on current offset
             state.currentSlide = Math.round(state.currentOffset / slideWidth);
 
             // Reset position if needed
-            if (state.currentSlide > Math.ceil(state.totalCards / config.cardsPerView) - 1) {
-                state.currentSlide = Math.max(0, Math.ceil(state.totalCards / config.cardsPerView) - 1);
+            if (state.currentSlide > totalSlides - 1) {
+                state.currentSlide = Math.max(0, totalSlides - 1);
             }
 
+            // Recalculate offset based on slide position
             state.currentOffset = state.currentSlide * slideWidth;
-            state.currentOffset = Math.max(0, Math.min(state.currentOffset, state.maxOffset));
 
             updateSlider();
         });
