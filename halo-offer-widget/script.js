@@ -462,14 +462,7 @@
                 elements.modalDetails.innerHTML = cardData.details;
             } else {
                 // Default content if no data provided
-                elements.modalDetails.innerHTML = `
-                    <ul class="hoffer-detail-list">
-                        <li>Akses unlimited ke semua konten premium</li>
-                        <li>Kualitas streaming Ultra HD 4K</li>
-                        <li>Simultan hingga 4 perangkat</li>
-                        <li>Download offline tanpa batas</li>
-                    </ul>
-                `;
+                elements.modalDetails.innerHTML = `-`;
             }
         }
 
@@ -479,14 +472,7 @@
                 elements.modalTerms.innerHTML = cardData.terms;
             } else {
                 // Default content if no data provided
-                elements.modalTerms.innerHTML = `
-                    <ul class="hoffer-terms-list">
-                        <li>Paket berlaku sesuai masa aktif yang dipilih</li>
-                        <li>Kuota internet berlaku 24 jam</li>
-                        <li>Tidak dapat diubah atau ditukar dengan paket lain</li>
-                        <li>Pembayaran non-refundable setelah aktivasi</li>
-                    </ul>
-                `;
+                elements.modalTerms.innerHTML = `-`;
             }
         }
 
