@@ -676,17 +676,42 @@ body {
     padding-top: 212px;
     padding-left: 48px;
     padding-right: 48px;
+    padding-bottom: 24px;
     border-bottom: 1px solid #f0f0f0;
     background-color: #FCF4F4;
     overflow-y: auto;
     max-height: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
 }
 
 .hoffer-data-plan-row {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 24px;
+}
+
+/* Desktop: 2 columns when there are more than 1 data plan row */
+@media (min-width: 769px) {
+    .hoffer-modal-data-plan:has(.hoffer-data-plan-row:nth-of-type(2)) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 48px;
+        row-gap: 24px;
+    }
+
+    /* Divider for left column items */
+    .hoffer-modal-data-plan:has(.hoffer-data-plan-row:nth-of-type(2)) .hoffer-data-plan-row:nth-child(odd):not(:last-child) {
+        padding-right: 24px;
+        border-right: 1px solid #d0d7de;
+    }
+
+    /* Divider for right column items */
+    .hoffer-modal-data-plan:has(.hoffer-data-plan-row:nth-of-type(2)) .hoffer-data-plan-row:nth-child(even):not(:nth-last-child(-n+1)) {
+        padding-right: 24px;
+        border-right: 1px solid #d0d7de;
+    }
 }
 
 .hoffer-data-plan-label {
@@ -853,7 +878,12 @@ body {
         font-size: 28px;
     }
 
-    .hoffer-modal-data-plan,
+    .hoffer-modal-data-plan {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-top: 212px;
+    }
+
     .hoffer-modal-expandable {
         padding-left: 20px;
         padding-right: 20px;
