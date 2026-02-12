@@ -258,8 +258,8 @@
         const totalSlides = Math.max(1, state.totalCards - config.cardsPerView + 1);
 
         if (elements.navArrows) {
-            // Hide arrows if only 1 slide position available or on mobile
-            if (totalSlides <= 1 || isMobile) {
+            // Hide arrows if items <= 3 or only 1 slide position available or on mobile
+            if (state.totalCards <= 3 || totalSlides <= 1 || isMobile) {
                 elements.navArrows.style.display = 'none';
             } else {
                 elements.navArrows.style.display = 'flex';
@@ -267,8 +267,8 @@
         }
 
         if (elements.pagination) {
-            // Hide pagination if only 1 slide position or on mobile
-            if (isMobile || totalSlides <= 1) {
+            // Hide pagination if items <= 3 or only 1 slide position or on mobile
+            if (state.totalCards <= 3 || isMobile || totalSlides <= 1) {
                 elements.pagination.style.display = 'none';
             } else {
                 elements.pagination.style.display = 'flex';
