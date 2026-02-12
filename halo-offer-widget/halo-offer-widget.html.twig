@@ -1,0 +1,200 @@
+{#
+  Halo Offer Widget - Twig Template untuk Drupal
+
+  Penggunaan:
+  1. Copy file ini ke template Drupal module/theme
+  2. Pass data dari Drupal ke template via hook_theme atau preprocess function
+  3. Data structure yang diharapkan:
+     - categories: array of category objects
+       - id: category identifier (video, games, music, others)
+       - label: category label
+       - icon: icon file path
+       - background: background image path
+       - chips: array of chip objects
+         - id: chip identifier
+         - label: chip label
+         - icon: icon file path
+         - cards: array of card objects
+           - name: package name
+           - duration: validity period
+           - extra: extra data info
+           - original_price: original price
+           - final_price: final price
+           - promo: promo text (optional)
+#}
+
+<div class="hoffer-widget-container" data-hoffer-widget>
+  <!-- Background -->
+  <div class="hoffer-widget-bg" data-hoffer-background></div>
+
+  <div class="hoffer-widget-content">
+    <!-- Title -->
+    <h1 class="hoffer-widget-title">{{ title|default('Pilih Layanan Digital Premium Kamu') }}</h1>
+
+    <!-- Category Tabs -->
+    <div class="hoffer-category-tabs" data-hoffer-tabs>
+      {% for category in categories %}
+        <div class="hoffer-tab-item{{ loop.first ? ' active' : '' }}"
+             data-category="{{ category.id }}"
+             data-background="{{ category.background }}">
+          <div class="hoffer-tab-icon">
+            <img src="{{ category.icon }}" alt="{{ category.label }}">
+          </div>
+          <span class="hoffer-tab-label">{{ category.label }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Filter Chips -->
+    {% for category in categories %}
+      <div class="hoffer-filter-chips{{ loop.first ? ' hoffer-active' : '' }}"
+           data-hoffer-chips
+           data-category="{{ category.id }}">
+        {% for chip in category.chips %}
+          <div class="hoffer-chip{{ loop.first ? ' active' : '' }}"
+               data-chip="{{ chip.id }}">
+            <div class="hoffer-chip-icon">
+              <img src="{{ chip.icon }}" alt="{{ chip.label }}">
+            </div>
+            <span class="hoffer-chip-label">{{ chip.label }}</span>
+          </div>
+        {% endfor %}
+      </div>
+    {% endfor %}
+
+    <!-- Cards Slider -->
+    <div class="hoffer-cards-wrapper">
+      <div class="hoffer-cards-container">
+        <div class="hoffer-cards-slider" id="hofferCardsSlider" data-hoffer-slider>
+          {% for category in categories %}
+            {% for chip in category.chips %}
+              <div class="hoffer-card-group{{ category.id == 'video' and chip.id == 'netflix' ? ' hoffer-active' : '' }}"
+                   data-category="{{ category.id }}"
+                   data-chip="{{ chip.id }}">
+                {% for card in chip.cards %}
+                  <div class="hoffer-package-card"
+                       data-name="{{ card.name }}"
+                       data-duration="{{ card.duration }}"
+                       data-extra="{{ card.extra }}"
+                       data-original-price="{{ card.original_price }}"
+                       data-final-price="{{ card.final_price }}"
+                       data-promo="{{ card.promo|default('') }}">
+                    <img src="{{ halo_card_image|default('assets/components/halo-offer-bg-card.svg') }}" alt="" class="hoffer-package-card-halo">
+                    <div class="hoffer-package-card-bg"></div>
+                    {% if card.promo %}
+                      <div class="hoffer-promo-ribbon">
+                        <div class="hoffer-ribbon-content">{{ card.promo }}</div>
+                        <svg width="8" height="10" viewBox="0 0 8 10" fill="none">
+                          <path d="M0 0.339844H2V9.33984C0.895431 9.33984 0 8.44441 0 7.33984V0.339844Z" fill="#FF0025"/>
+                          <path d="M0 0H8L5.12873 0.628091C2.13432 1.28312 0 3.93478 0 7V0Z" fill="#001A41"/>
+                        </svg>
+                      </div>
+                    {% endif %}
+                    <div class="hoffer-package-card-content">
+                      <div class="hoffer-package-detail">
+                        <h3 class="hoffer-package-name">{{ card.name }}</h3>
+                        <p class="hoffer-package-duration">{{ card.duration }}</p>
+                        <p class="hoffer-package-extra">{{ card.extra }}</p>
+                      </div>
+                      <div class="hoffer-package-price">
+                        {% if card.original_price != card.final_price %}
+                          <span class="hoffer-price-original">{{ card.original_price }}</span>
+                        {% endif %}
+                        <span class="hoffer-price-final">{{ card.final_price }}</span>
+                      </div>
+                      <button class="hoffer-package-btn subscribe-trigger">Berlangganan</button>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            {% endfor %}
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Navigation Arrows -->
+      <div class="hoffer-nav-arrows">
+        <button class="hoffer-nav-arrow hoffer-prev" id="hofferPrevBtn" disabled>
+          <img src="{{ arrow_left_image|default('https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/leftArrowActive.png') }}" alt="left-arrow">
+        </button>
+        <button class="hoffer-nav-arrow hoffer-next" id="hofferNextBtn">
+          <img src="{{ arrow_right_image|default('https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/RightArrowActive.png') }}" alt="right-arrow">
+        </button>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="hoffer-pagination" id="hofferPagination"></div>
+  </div>
+</div>
+
+<!-- Subscription Modal -->
+<div class="hoffer-subscription-modal" id="hofferSubscriptionModal">
+  <div class="hoffer-modal-backdrop" id="hofferModalBackdrop"></div>
+  <div class="hoffer-modal-container">
+    <button class="hoffer-modal-close" id="hofferModalClose">
+      <svg viewBox="0 0 24 24" fill="none">
+        <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </button>
+
+    <div class="hoffer-modal-header">
+      <div class="hoffer-modal-promo-badge" id="hofferModalPromoBadge">PROMO</div>
+      <h2 class="hoffer-modal-title" id="hofferModalTitle">Netflix Premium</h2>
+      <div class="hoffer-modal-title-desc">
+        <h3 class="hoffer-modal-title-price">Rp 186.000</h3>
+        <div class="hoffer-modal-title-validity">30-day validity</div>
+      </div>
+    </div>
+
+    <div class="hoffer-modal-data-plan">
+      <div class="hoffer-data-plan-row">
+        <div class="hoffer-data-plan-label">
+          <img src="{{ globe_icon|default('assets/components/globe.svg') }}" alt="icon-offer">
+          <span>INTERNET</span>
+        </div>
+        <span class="hoffer-data-plan-value" id="hofferModalExtra">Extra 2 GB</span>
+      </div>
+    </div>
+
+    <div class="hoffer-modal-expandable">
+      <div class="hoffer-expandable-section">
+        <button class="hoffer-expandable-header" data-expand="details">
+          <span>Detail Paket</span>
+          <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="hoffer-expandable-content">
+          <ul class="hoffer-detail-list">
+            <li>Akses unlimited ke semua konten premium</li>
+            <li>Kualitas streaming Ultra HD 4K</li>
+            <li>Simultan hingga 4 perangkat</li>
+            <li>Download offline tanpa batas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hoffer-expandable-section">
+        <button class="hoffer-expandable-header" data-expand="terms">
+          <span>Syarat & Ketentuan</span>
+          <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="hoffer-expandable-content">
+          <ul class="hoffer-terms-list">
+            <li>Paket berlaku sesuai masa aktif yang dipilih</li>
+            <li>Kuota internet berlaku 24 jam</li>
+            <li>Tidak dapat diubah atau ditukar dengan paket lain</li>
+            <li>Pembayaran non-refundable setelah aktivasi</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="hoffer-modal-cta">
+      <a href="{{ subscribe_url|default('#') }}" class="hoffer-modal-subscribe-btn" id="hofferModalSubscribeBtn">Berlangganan</a>
+    </div>
+  </div>
+</div>

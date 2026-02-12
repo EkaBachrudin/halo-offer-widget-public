@@ -1,661 +1,525 @@
-const categoryData = [
-    {
-        category: 'video',
-        label: 'Video',
-        iconFile: 'moves.svg',
-        background: "assets/backgrounds/video.png",
-        chips: [
-            { id: 'netflix', label: 'Netflix', color: '#E50914', iconFile: 'netflix.svg' },
-            { id: 'hotstar', label: 'Disney+ Hotstar', color: '#0D1E45', iconFile: 'disney_hotstar.svg' },
-            { id: 'vidio', label: 'Vidio', color: '#ED0226', iconFile: 'video.svg' },
-            { id: 'wetv', label: 'WeTV', color: '#FF9500', iconFile: 'video.svg' },
-            { id: 'prime', label: 'Prime Video', color: '#00A8E1', iconFile: 'prime_video.svg' }
-        ],
-        cards: [
-            { chipId: 'netflix', items: [
-                { name: 'Netflix Mobile', duration: '31 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp213.000', finalPrice: 'Rp186.000', promo: 'Promo' },
-                { name: 'Netflix Basic', duration: '31 Hari', extra: 'Extra 4 GB', originalPrice: 'Rp256.000', finalPrice: 'Rp226.000', promo: 'Promo' },
-                { name: 'Netflix Standard', duration: '62 Hari', extra: 'Extra 6 GB', originalPrice: 'Rp450.000', finalPrice: 'Rp396.000', promo: 'Promo' },
-                { name: 'Netflix Premium', duration: '31 Hari', extra: 'Extra 8 GB', originalPrice: 'Rp360.000', finalPrice: 'Rp360.000', promo: null },
-                { name: 'Netflix Mobile', duration: '93 Hari', extra: 'Extra 6 GB', originalPrice: 'Rp639.000', finalPrice: 'Rp546.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'hotstar', items: [
-                { name: 'Hotstar Mobile', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp35.000', finalPrice: 'Rp30.000', promo: 'Promo' },
-                { name: 'Hotstar Premium', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp55.000', promo: 'Promo' },
-                { name: 'Hotstar Yearly', duration: '365 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp420.000', finalPrice: 'Rp360.000', promo: 'Best Deal' },
-                { name: 'Hotstar Mobile 6M', duration: '180 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp210.000', finalPrice: 'Rp180.000', promo: null }
-            ]},
-            { chipId: 'vidio', items: [
-                { name: 'Vidio Platinum', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
-                { name: 'Vidio Platinum 3M', duration: '90 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp90.000', finalPrice: 'Rp75.000', promo: 'Promo' },
-                { name: 'Vidio Yearly', duration: '365 Hari', extra: 'Extra 15 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp250.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'wetv', items: [
-                { name: 'WeTV VIP', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp35.000', finalPrice: 'Rp30.000', promo: 'Promo' },
-                { name: 'WeTV VIP 3M', duration: '90 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp105.000', finalPrice: 'Rp90.000', promo: null },
-                { name: 'WeTV Yearly', duration: '365 Hari', extra: 'Extra 8 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp300.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'prime', items: [
-                { name: 'Prime Video Monthly', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp55.000', promo: 'Promo' },
-                { name: 'Prime Video 3M', duration: '90 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp180.000', finalPrice: 'Rp150.000', promo: null },
-                { name: 'Prime Yearly', duration: '365 Hari', extra: 'Extra 15 GB', originalPrice: 'Rp600.000', finalPrice: 'Rp500.000', promo: 'Best Deal' }
-            ]}
-        ]
-    },
-    {
-        category: 'games',
-        label: 'Games',
-        iconFile: 'games.svg',
-        background: "assets/backgrounds/games.png",
-        chips: [
-            { id: 'mobile-legends', label: 'Mobile Legends', color: '#D3242A', iconFile: 'mobile_lagend.svg' },
-            { id: 'pubg', label: 'PUBG Mobile', color: '#F7A607', iconFile: 'garena.svg' },
-            { id: 'freefire', label: 'Free Fire', color: '#FF6B00', iconFile: 'free_fire.svg' },
-            { id: 'genshin', label: 'Genshin Impact', color: '#00A8E1', iconFile: 'roblox.svg' }
-        ],
-        cards: [
-            { chipId: 'mobile-legends', items: [
-                { name: 'Weekly Pass', duration: '7 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp28.000', finalPrice: 'Rp25.000', promo: 'Promo' },
-                { name: 'Monthly Pass', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp150.000', finalPrice: 'Rp130.000', promo: 'Promo' },
-                { name: 'Twilight Pass', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp280.000', finalPrice: 'Rp250.000', promo: null },
-                { name: 'Starlight Member', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp100.000', finalPrice: 'Rp90.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'pubg', items: [
-                { name: 'UC Pack 60', duration: '7 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp15.000', finalPrice: 'Rp12.000', promo: 'Promo' },
-                { name: 'UC Pack 325', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp75.000', finalPrice: 'Rp65.000', promo: null },
-                { name: 'Royale Pass', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp150.000', finalPrice: 'Rp130.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'freefire', items: [
-                { name: 'FF Diamond 70', duration: '7 Hari', extra: 'Extra 300 MB', originalPrice: 'Rp10.000', finalPrice: 'Rp8.500', promo: 'Promo' },
-                { name: 'FF Diamond 140', duration: '15 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp20.000', finalPrice: 'Rp17.000', promo: null },
-                { name: 'Membership Mingguan', duration: '7 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'genshin', items: [
-                { name: 'Welkin Moon', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp79.000', finalPrice: 'Rp70.000', promo: 'Promo' },
-                { name: 'Genesis Crystal', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp159.000', finalPrice: 'Rp140.000', promo: null },
-                { name: 'Blessing Bundle', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp260.000', promo: 'Best Deal' }
-            ]}
-        ]
-    },
-    {
-        category: 'music',
-        label: 'Music',
-        iconFile: 'musics.svg',
-        background: "assets/backgrounds/music.png",
-        chips: [
-            { id: 'spotify', label: 'Spotify', color: '#1DB954', iconFile: 'spotify.svg' },
-            { id: 'joox', label: 'JOOX', color: '#FF5200', iconFile: 'langit_musik.svg' },
-            { id: 'apple-music', label: 'Apple Music', color: '#FA243C', iconFile: 'youtube.svg' },
-            { id: 'youtube-music', label: 'YouTube Music', color: '#FF0000', iconFile: 'smule.svg' }
-        ],
-        cards: [
-            { chipId: 'spotify', items: [
-                { name: 'Spotify Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp55.000', finalPrice: 'Rp50.000', promo: 'Promo' },
-                { name: 'Spotify Duo', duration: '30 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp85.000', finalPrice: 'Rp75.000', promo: null },
-                { name: 'Spotify Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp140.000', finalPrice: 'Rp120.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'joox', items: [
-                { name: 'JOOX VIP', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
-                { name: 'JOOX VIP 3M', duration: '90 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp90.000', finalPrice: 'Rp75.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'apple-music', items: [
-                { name: 'Apple Music Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp65.000', finalPrice: 'Rp60.000', promo: 'Promo' },
-                { name: 'Apple Music Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp105.000', finalPrice: 'Rp95.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'youtube-music', items: [
-                { name: 'YT Music Individual', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp55.000', finalPrice: 'Rp50.000', promo: 'Promo' },
-                { name: 'YT Music Family', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp95.000', finalPrice: 'Rp85.000', promo: 'Best Deal' }
-            ]}
-        ]
-    },
-    {
-        category: 'others',
-        label: 'Layanan Lainnya',
-        iconFile: 'others.svg',
-        background: "assets/backgrounds/others.png",
-        chips: [
-            { id: 'canva', label: 'Canva', color: '#00C4CC', iconFile: 'gpt.svg' },
-            { id: 'adobe', label: 'Adobe CC', color: '#FF0000', iconFile: 'zoom.svg' },
-            { id: 'norton', label: 'Norton', color: '#FFEB3B', iconFile: 'norton.svg' },
-            { id: 'kompas', label: 'Kompas', color: '#FF5722', iconFile: 'kompas.svg' }
-        ],
-        cards: [
-            { chipId: 'canva', items: [
-                { name: 'Canva Pro', duration: '30 Hari', extra: 'Extra 2 GB', originalPrice: 'Rp60.000', finalPrice: 'Rp50.000', promo: 'Promo' },
-                { name: 'Canva Pro 6M', duration: '180 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp360.000', finalPrice: 'Rp300.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'adobe', items: [
-                { name: 'Adobe CC Single', duration: '30 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp350.000', finalPrice: 'Rp320.000', promo: 'Promo' },
-                { name: 'Adobe CC Full', duration: '30 Hari', extra: 'Extra 10 GB', originalPrice: 'Rp600.000', finalPrice: 'Rp550.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'norton', items: [
-                { name: 'Norton Basic', duration: '30 Hari', extra: 'Extra 1 GB', originalPrice: 'Rp50.000', finalPrice: 'Rp45.000', promo: 'Promo' },
-                { name: 'Norton Premium', duration: '365 Hari', extra: 'Extra 5 GB', originalPrice: 'Rp500.000', finalPrice: 'Rp450.000', promo: 'Best Deal' }
-            ]},
-            { chipId: 'kompas', items: [
-                { name: 'Kompas Digital', duration: '30 Hari', extra: 'Extra 500 MB', originalPrice: 'Rp30.000', finalPrice: 'Rp25.000', promo: 'Promo' },
-                { name: 'Kompas Yearly', duration: '365 Hari', extra: 'Extra 3 GB', originalPrice: 'Rp300.000', finalPrice: 'Rp250.000', promo: 'Best Deal' }
-            ]}
-        ]
-    }
-];
+/**
+ * Halo Offer Widget - Drupal/Twig Friendly Version
+ *
+ * Pendekatan: Server-side rendering (Twig) + Client-side interaction (JavaScript)
+ * - HTML di-generate oleh Twig (server-side)
+ * - JavaScript hanya menangani show/hide, slider navigation, dan modal interactions
+ * - Data disimpan di data attribute untuk akses JavaScript
+ */
 
-// Slider Configuration
-const sliderConfig = {
-    cardsPerView: 3,
-    cardWidth: 280,
-    gap: 24
-};
+(function() {
+    'use strict';
 
-// Get actual card width from DOM
-function getCardWidth() {
-    const card = document.querySelector('.hoffer-package-card');
-    return card ? card.offsetWidth : sliderConfig.cardWidth;
-}
+    // ========================
+    // CONFIGURATION
+    // ========================
+    const config = {
+        cardsPerView: 3,
+        cardWidth: 280,
+        gap: 24
+    };
 
-// Current state - using category index for array-based approach
-let currentCategoryIndex = 0;
-let currentChip = 'netflix';
-let currentOffset = 0;
-let totalCards = 0;
-let maxOffset = 0;
+    // ========================
+    // STATE
+    // ========================
+    let state = {
+        currentCategory: 'video',
+        currentChip: 'netflix',
+        currentOffset: 0,
+        totalCards: 0,
+        maxOffset: 0
+    };
 
-// Helper function to get current category data
-function getCurrentCategory() {
-    return categoryData[currentCategoryIndex];
-}
+    // ========================
+    // DOM ELEMENTS
+    // ========================
+    const elements = {
+        widget: document.querySelector('[data-hoffer-widget]'),
+        tabsContainer: document.querySelector('[data-hoffer-tabs]'),
+        chipsContainers: document.querySelectorAll('[data-hoffer-chips]'),
+        slider: document.querySelector('[data-hoffer-slider]'),
+        background: document.querySelector('[data-hoffer-background]'),
+        prevBtn: document.getElementById('hofferPrevBtn'),
+        nextBtn: document.getElementById('hofferNextBtn'),
+        pagination: document.getElementById('hofferPagination'),
+        navArrows: document.querySelector('.hoffer-nav-arrows'),
+        sliderContainer: document.querySelector('.hoffer-cards-container'),
+        modal: document.getElementById('hofferSubscriptionModal'),
+        modalBackdrop: document.getElementById('hofferModalBackdrop'),
+        modalClose: document.getElementById('hofferModalClose'),
+        modalSubscribeBtn: document.getElementById('hofferModalSubscribeBtn'),
+        modalTitle: document.getElementById('hofferModalTitle'),
+        modalTitlePrice: document.querySelector('.hoffer-modal-title-price'),
+        modalTitleValidity: document.querySelector('.hoffer-modal-title-validity'),
+        modalExtra: document.getElementById('hofferModalExtra'),
+        modalPromoBadge: document.getElementById('hofferModalPromoBadge')
+    };
 
-// Elements
-const slider = document.getElementById('hofferCardsSlider');
-const loadingOverlay = document.getElementById('hofferLoadingOverlay');
-
-// Hide loading overlay
-function hideLoading() {
-    if (loadingOverlay) {
-        loadingOverlay.classList.add('hidden');
-    }
-}
-const prevBtn = document.getElementById('hofferPrevBtn');
-const nextBtn = document.getElementById('hofferNextBtn');
-const pagination = document.getElementById('hofferPagination');
-const navArrows = document.querySelector('.hoffer-nav-arrows');
-
-// Calculate slide width dynamically
-function getSlideWidth() {
-    return getCardWidth() + sliderConfig.gap;
-}
-
-// Render tabs dynamically from categoryData array
-function renderTabs() {
-    const tabsContainer = document.querySelector('.hoffer-category-tabs');
-    tabsContainer.innerHTML = '';
-
-    categoryData.forEach((item, index) => {
-        const tab = document.createElement('div');
-        tab.className = 'hoffer-tab-item' + (index === 0 ? ' active' : '');
-        tab.dataset.index = index;
-
-        tab.innerHTML = `
-            <div class="hoffer-tab-icon">
-                <img src="assets/category-icons/${item.iconFile}" alt="${item.label}">
-            </div>
-            <span class="hoffer-tab-label">${item.label}</span>
-            <div class="hoffer-tab-indicator"></div>
-        `;
-
-        tabsContainer.appendChild(tab);
-    });
-
-    // Re-attach tab event listeners
-    const tabs = document.querySelectorAll('.hoffer-tab-item');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-
-            // Reset slider position
-            currentOffset = 0;
-
-            // Update current category index
-            currentCategoryIndex = parseInt(tab.dataset.index);
-
-            // Update background image
-            updateBackground(currentCategoryIndex);
-
-            // Render new chips and cards
-            renderSubCategory(currentCategoryIndex);
-            renderCards(currentCategoryIndex, currentChip);
-        });
-    });
-}
-
-// Render chips based on selected category index
-function renderSubCategory(categoryIndex) {
-    const data = categoryData[categoryIndex];
-    if (!data) return;
-
-    const chipsContainer = document.querySelector('.hoffer-filter-chips');
-    chipsContainer.innerHTML = '';
-
-    data.chips.forEach((chipData, index) => {
-        const chip = document.createElement('div');
-        chip.className = 'hoffer-chip' + (index === 0 ? ' active' : '');
-        chip.dataset.filter = chipData.id;
-
-        chip.innerHTML = `
-            <div class="hoffer-chip-icon">
-                <img src="assets/sub-category-icons/${chipData.iconFile}" alt="${chipData.label}">
-            </div>
-            <span class="hoffer-chip-label">${chipData.label}</span>
-        `;
-
-        chip.addEventListener('click', () => {
-            document.querySelectorAll('.hoffer-chip').forEach(c => c.classList.remove('active'));
-            chip.classList.add('active');
-            currentChip = chipData.id;
-            currentOffset = 0;
-            renderCards(currentCategoryIndex, currentChip);
-        });
-
-        chipsContainer.appendChild(chip);
-    });
-
-    // Set first chip as active
-    currentChip = data.chips[0]?.id || '';
-}
-
-// Render cards based on selected category index and chip
-function renderCards(categoryIndex, chip) {
-    const data = categoryData[categoryIndex];
-    if (!data) return;
-
-    const cardGroup = data.cards.find(c => c.chipId === chip);
-    if (!cardGroup) return;
-
-    const cards = cardGroup.items;
-    totalCards = cards.length;
-
-    // Update max offset
-    maxOffset = getSlideWidth() * Math.max(0, totalCards - sliderConfig.cardsPerView);
-
-    slider.innerHTML = '';
-
-    cards.forEach(cardData => {
-        const card = document.createElement('div');
-        card.className = 'hoffer-package-card';
-
-        const promoHtml = cardData.promo ? `
-            <div class="hoffer-promo-ribbon">
-                <div class="hoffer-ribbon-content">${cardData.promo}</div>
-                <svg width="8" height="10" viewBox="0 0 8 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 0.339844H2V9.33984C0.895431 9.33984 0 8.44441 0 7.33984V0.339844Z" fill="#FF0025"/>
-                    <path d="M0 0H8L5.12873 0.628091C2.13432 1.28312 0 3.93478 0 7V0Z" fill="#001A41"/>
-                </svg>
-
-            </div>
-        ` : '';
-
-        const originalPriceHtml = cardData.originalPrice !== cardData.finalPrice
-            ? `<span class="hoffer-price-original">${cardData.originalPrice}</span>`
-            : '';
-
-        card.innerHTML = `
-            <img src="assets/components/halo-offer-bg-card.svg" alt="" class="hoffer-package-card-halo">
-            <div class="hoffer-package-card-bg"></div>
-            ${promoHtml}
-            <div class="hoffer-package-card-content">
-                <div class="hoffer-package-detail">
-                    <h3 class="hoffer-package-name">${cardData.name}</h3>
-                    <p class="hoffer-package-duration">${cardData.duration}</p>
-                    <p class="hoffer-package-extra">${cardData.extra}</p>
-                </div>
-                <div class="hoffer-package-price">
-                    ${originalPriceHtml}
-                    <span class="hoffer-price-final">${cardData.finalPrice}</span>
-                </div>
-                <button class="hoffer-package-btn subscribe-trigger">Berlangganan</button>
-            </div>
-        `;
-
-        slider.appendChild(card);
-    });
-
-    updateSlider();
-    initPagination();
-}
-
-// Initialize pagination dots
-function initPagination() {
-    const totalSlides = Math.ceil(totalCards / sliderConfig.cardsPerView);
-    pagination.innerHTML = '';
-
-    for (let i = 0; i < totalSlides; i++) {
-        const dot = document.createElement('div');
-        dot.className = 'hoffer-pagination-dot' + (i === 0 ? ' active' : '');
-        dot.style.width = i === 0 ? '32px' : '8px';
-        dot.style.height = '8px';
-        dot.addEventListener('click', () => goToSlide(i));
-        pagination.appendChild(dot);
-    }
-}
-
-// Update slider position
-function updateSlider() {
-    slider.style.transform = `translateX(-${currentOffset}px)`;
-
-    // Update navigation buttons
-    prevBtn.disabled = currentOffset <= 0;
-    nextBtn.disabled = currentOffset >= maxOffset;
-
-    // Update pagination
-    const currentSlide = Math.round(currentOffset / (getSlideWidth() * sliderConfig.cardsPerView));
-    const dots = pagination.querySelectorAll('.hoffer-pagination-dot');
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
-        dot.style.width = index === currentSlide ? '32px' : '8px';
-    });
-
-    // Show/hide arrows based on total cards and screen size
-    if (navArrows) {
-        const isMobile = window.innerWidth <= 768;
-        if (totalCards <= 3 || isMobile) {
-            navArrows.style.display = 'none';
-        } else {
-            navArrows.style.display = 'flex';
-        }
+    // ========================
+    // UTILITY FUNCTIONS
+    // ========================
+    function getCardWidth() {
+        const card = document.querySelector('.hoffer-package-card');
+        return card ? card.offsetWidth : config.cardWidth;
     }
 
-    // Hide pagination in desktop when total cards <= 3, always hide on mobile
-    const isMobile = window.innerWidth <= 768;
-    if (pagination) {
-        if (isMobile || (totalCards <= 3 && !isMobile)) {
-            pagination.style.display = 'none';
-        } else {
-            pagination.style.display = 'flex';
-        }
-    }
-}
-
-// Go to specific slide
-function goToSlide(index) {
-    currentOffset = index * getSlideWidth() * sliderConfig.cardsPerView;
-    currentOffset = Math.min(currentOffset, maxOffset);
-    updateSlider();
-}
-
-// Previous button
-prevBtn.addEventListener('click', () => {
-    currentOffset = Math.max(0, currentOffset - getSlideWidth() * sliderConfig.cardsPerView);
-    updateSlider();
-});
-
-// Next button
-nextBtn.addEventListener('click', () => {
-    currentOffset = Math.min(maxOffset, currentOffset + getSlideWidth() * sliderConfig.cardsPerView);
-    updateSlider();
-});
-
-// Update background image based on category index
-function updateBackground(categoryIndex) {
-    const data = categoryData[categoryIndex];
-    if (!data?.background) return;
-
-    const widgetBg = document.querySelector('.hoffer-widget-bg');
-    // Set background image directly from categoryData
-    widgetBg.style.backgroundImage = `url('${data.background}')`;
-}
-
-// Handle window resize
-function handleResize() {
-    const containerWidth = document.querySelector('.hoffer-cards-container').offsetWidth;
-
-    if (containerWidth < 600) {
-        sliderConfig.cardsPerView = 1;
-    } else if (containerWidth < 900) {
-        sliderConfig.cardsPerView = 2;
-    } else {
-        sliderConfig.cardsPerView = 3;
+    function getSlideWidth() {
+        return getCardWidth() + config.gap;
     }
 
-    // Recalculate max offset
-    maxOffset = getSlideWidth() * Math.max(0, totalCards - sliderConfig.cardsPerView);
-
-    // Reset position if needed
-    if (currentOffset > maxOffset) {
-        currentOffset = Math.max(0, maxOffset);
+    function getActiveCardGroup() {
+        return document.querySelector(`.hoffer-card-group[data-category="${state.currentCategory}"][data-chip="${state.currentChip}"]`);
     }
 
-    updateSlider();
-    initPagination();
-}
+    // ========================
+    // CATEGORY TAB HANDLING
+    // ========================
+    function initCategoryTabs() {
+        const tabs = elements.tabsContainer.querySelectorAll('.hoffer-tab-item');
 
-// Keyboard navigation
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft' && !prevBtn.disabled) {
-        prevBtn.click();
-    } else if (e.key === 'ArrowRight' && !nextBtn.disabled) {
-        nextBtn.click();
-    }
-});
+        tabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const category = this.dataset.category;
+                const background = this.dataset.background;
 
-// Touch/Swipe support for mobile with real-time drag
-let touchStartX = 0;
-let touchCurrentX = 0;
-let touchStartOffset = 0;
-let isDragging = false;
-const sliderContainer = document.querySelector('.hoffer-cards-container');
+                // Update active state on tabs
+                tabs.forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
 
-sliderContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.touches[0].clientX;
-    touchCurrentX = touchStartX;
-    touchStartOffset = currentOffset;
-    isDragging = true;
+                // Update state
+                state.currentCategory = category;
+                state.currentOffset = 0;
 
-    // Disable transition during drag for immediate feedback
-    slider.style.transition = 'none';
-}, { passive: true });
+                // Update background
+                updateBackground(background);
 
-sliderContainer.addEventListener('touchmove', (e) => {
-    if (!isDragging) return;
+                // Show/hide chips containers
+                updateChipsVisibility(category);
 
-    touchCurrentX = e.touches[0].clientX;
-    const diff = touchStartX - touchCurrentX;
-
-    // Calculate new offset with resistance at boundaries
-    let newOffset = touchStartOffset + diff;
-
-    // Add resistance when going beyond boundaries
-    if (newOffset < 0) {
-        newOffset = diff * 0.3; // 30% resistance at start
-    } else if (newOffset > maxOffset) {
-        const beyondEnd = newOffset - maxOffset;
-        newOffset = maxOffset + (beyondEnd * 0.3); // 30% resistance at end
-    }
-
-    // Apply the transform directly for real-time feedback
-    slider.style.transform = `translateX(-${newOffset}px)`;
-}, { passive: true });
-
-sliderContainer.addEventListener('touchend', (e) => {
-    if (!isDragging) return;
-    isDragging = false;
-
-    // Re-enable transition for smooth snap
-    slider.style.transition = 'transform 0.5s ease';
-
-    const touchEndX = e.changedTouches[0].clientX;
-    const diff = touchStartX - touchEndX;
-    const velocity = diff / (Date.now() - e.timeStamp); // Calculate swipe velocity
-
-    // Determine which slide to snap to
-    const slideWidth = getSlideWidth();
-    const draggedOffset = touchStartOffset + diff;
-
-    // Calculate target slide based on drag distance and velocity
-    let targetSlide = Math.round(draggedOffset / slideWidth);
-
-    // Apply velocity-based snap for fast swipes
-    if (Math.abs(velocity) > 0.5) {
-        if (velocity > 0) {
-            targetSlide = Math.ceil(draggedOffset / slideWidth);
-        } else {
-            targetSlide = Math.floor(draggedOffset / slideWidth);
-        }
-    }
-
-    // Calculate final offset
-    let finalOffset = targetSlide * slideWidth;
-
-    // Constrain within bounds
-    finalOffset = Math.max(0, Math.min(finalOffset, maxOffset));
-
-    // Snap to nearest card boundary
-    const cardIndex = Math.round(finalOffset / slideWidth);
-    currentOffset = cardIndex * slideWidth;
-    currentOffset = Math.max(0, Math.min(currentOffset, maxOffset));
-
-    updateSlider();
-});
-
-sliderContainer.addEventListener('touchcancel', () => {
-    if (!isDragging) return;
-    isDragging = false;
-
-    // Re-enable transition and snap back to current position
-    slider.style.transition = 'transform 0.5s ease';
-    updateSlider();
-});
-
-// Modal Elements (initialized after DOM is ready)
-let modal, modalBackdrop, modalClose, modalSubscribeBtn;
-let modalTitle, modalTitlePrice, modalTitleValidity, modalExtra, modalPromoBadge;
-
-// Initialize modal elements
-function initModalElements() {
-    modal = document.getElementById('hofferSubscriptionModal');
-    modalBackdrop = document.getElementById('hofferModalBackdrop');
-    modalClose = document.getElementById('hofferModalClose');
-    modalSubscribeBtn = document.getElementById('hofferModalSubscribeBtn');
-    modalTitle = document.getElementById('hofferModalTitle');
-    modalTitlePrice = document.querySelector('.hoffer-modal-title-price');
-    modalTitleValidity = document.querySelector('.hoffer-modal-title-validity');
-    modalExtra = document.getElementById('hofferModalExtra');
-    modalPromoBadge = document.getElementById('hofferModalPromoBadge');
-
-    // Close modal on backdrop click
-    modalBackdrop.addEventListener('click', closeModal);
-
-    // Close modal on close button click
-    modalClose.addEventListener('click', closeModal);
-
-    // Expandable sections functionality (accordion behavior)
-    document.querySelectorAll('.hoffer-expandable-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const section = header.closest('.hoffer-expandable-section');
-            const isCurrentlyActive = section.classList.contains('active');
-
-            // Close all expandable sections
-            document.querySelectorAll('.hoffer-expandable-section').forEach(s => {
-                s.classList.remove('active');
+                // Get first chip of this category and activate it
+                const chipsContainer = document.querySelector(`[data-hoffer-chips][data-category="${category}"]`);
+                const firstChip = chipsContainer?.querySelector('.hoffer-chip');
+                if (firstChip) {
+                    activateChip(firstChip.dataset.chip);
+                }
             });
+        });
+    }
 
-            // Toggle current section (only if it wasn't active)
-            if (!isCurrentlyActive) {
-                section.classList.add('active');
+    function updateBackground(backgroundPath) {
+        if (elements.background && backgroundPath) {
+            elements.background.style.backgroundImage = `url('${backgroundPath}')`;
+        }
+    }
+
+    function updateChipsVisibility(category) {
+        elements.chipsContainers.forEach(container => {
+            if (container.dataset.category === category) {
+                container.classList.add('hoffer-active');
+            } else {
+                container.classList.remove('hoffer-active');
             }
         });
-    });
-
-    // Subscribe button in modal
-    modalSubscribeBtn.addEventListener('click', () => {
-        // Action here - e.g., redirect to subscription page
-        closeModal();
-    });
-}
-
-// Open modal function
-function openModal(cardData) {
-    // Update modal content
-    modalTitle.textContent = cardData.name;
-    modalTitlePrice.textContent = cardData.finalPrice;
-    modalTitleValidity.textContent = cardData.duration;
-    modalExtra.textContent = cardData.extra;
-
-    // Show/hide promo badge
-    if (cardData.promo) {
-        modalPromoBadge.style.display = 'inline-block';
-        modalPromoBadge.textContent = cardData.promo;
-    } else {
-        modalPromoBadge.style.display = 'none';
     }
 
-    // Reset expandable sections
-    document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
-        section.classList.remove('active');
-    });
-
-    // Show modal
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
-}
-
-// Close modal function
-function closeModal() {
-    modal.classList.remove('active');
-    document.body.style.overflow = '';
-
-    // Reset expandable sections
-    document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
-        section.classList.remove('active');
-    });
-}
-
-// Close modal on escape key
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal && modal.classList.contains('active')) {
-        closeModal();
+    // ========================
+    // CHIP FILTER HANDLING
+    // ========================
+    function initChips() {
+        document.querySelectorAll('.hoffer-chip').forEach(chip => {
+            chip.addEventListener('click', function() {
+                const chipId = this.dataset.chip;
+                activateChip(chipId);
+            });
+        });
     }
-});
 
-// Event delegation for package card clicks
-slider.addEventListener('click', (e) => {
-    const card = e.target.closest('.hoffer-package-card');
-    if (card) {
-        const cardIndex = Array.from(slider.children).indexOf(card);
-        const categoryData = getCurrentCategory();
-        const cardGroup = categoryData.cards.find(c => c.chipId === currentChip);
-        const currentCards = cardGroup.items;
-        const cardData = currentCards[cardIndex];
+    function activateChip(chipId) {
+        state.currentChip = chipId;
+        state.currentOffset = 0;
 
-        if (cardData) {
-            openModal(cardData);
+        // Update active state on chips within current category
+        const currentChipsContainer = document.querySelector(`[data-hoffer-chips][data-category="${state.currentCategory}"]`);
+        if (currentChipsContainer) {
+            currentChipsContainer.querySelectorAll('.hoffer-chip').forEach(chip => {
+                chip.classList.toggle('active', chip.dataset.chip === chipId);
+            });
+        }
+
+        // Show/hide card groups
+        updateCardGroupsVisibility();
+        updateSlider();
+    }
+
+    function updateCardGroupsVisibility() {
+        const cardGroups = document.querySelectorAll('.hoffer-card-group');
+
+        cardGroups.forEach(group => {
+            const matchesCategory = group.dataset.category === state.currentCategory;
+            const matchesChip = group.dataset.chip === state.currentChip;
+
+            if (matchesCategory && matchesChip) {
+                group.classList.add('hoffer-active');
+            } else {
+                group.classList.remove('hoffer-active');
+            }
+        });
+
+        // Update total cards count
+        const activeGroup = getActiveCardGroup();
+        state.totalCards = activeGroup ? activeGroup.querySelectorAll('.hoffer-package-card').length : 0;
+    }
+
+    // ========================
+    // SLIDER NAVIGATION
+    // ========================
+    function updateSlider() {
+        const slideWidth = getSlideWidth();
+        const containerWidth = elements.sliderContainer?.offsetWidth || 900;
+
+        // Calculate cards per view based on container width
+        if (containerWidth < 600) {
+            config.cardsPerView = 1;
+        } else if (containerWidth < 900) {
+            config.cardsPerView = 2;
+        } else {
+            config.cardsPerView = 3;
+        }
+
+        // Update max offset
+        state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
+
+        // Apply transform
+        elements.slider.style.transform = `translateX(-${state.currentOffset}px)`;
+
+        // Update navigation buttons
+        if (elements.prevBtn) elements.prevBtn.disabled = state.currentOffset <= 0;
+        if (elements.nextBtn) elements.nextBtn.disabled = state.currentOffset >= state.maxOffset;
+
+        // Update pagination
+        updatePagination();
+
+        // Show/hide navigation arrows
+        updateNavigationVisibility();
+    }
+
+    function updatePagination() {
+        if (!elements.pagination) return;
+
+        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        const currentSlide = Math.round(state.currentOffset / (getSlideWidth() * config.cardsPerView));
+
+        elements.pagination.innerHTML = '';
+
+        for (let i = 0; i < totalSlides; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'hoffer-pagination-dot' + (i === currentSlide ? ' active' : '');
+            dot.style.width = i === currentSlide ? '32px' : '8px';
+            dot.style.height = '8px';
+            dot.addEventListener('click', () => goToSlide(i));
+            elements.pagination.appendChild(dot);
         }
     }
-});
 
-// Initialize
-window.addEventListener('resize', handleResize);
-handleResize();
+    function updateNavigationVisibility() {
+        const isMobile = window.innerWidth <= 768;
 
-// Initialize modal elements after DOM is ready
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-        initModalElements();
-        // Initial render
-        renderTabs();
-        updateBackground(currentCategoryIndex);
-        renderSubCategory(currentCategoryIndex);
-        renderCards(currentCategoryIndex, currentChip);
-        // Hide loading after render complete
-        hideLoading();
-    });
-} else {
-    initModalElements();
-    // Initial render
-    renderTabs();
-    updateBackground(currentCategoryIndex);
-    renderSubCategory(currentCategoryIndex);
-    renderCards(currentCategoryIndex, currentChip);
-    // Hide loading after render complete
-    hideLoading();
-}
+        if (elements.navArrows) {
+            if (state.totalCards <= 3 || isMobile) {
+                elements.navArrows.style.display = 'none';
+            } else {
+                elements.navArrows.style.display = 'flex';
+            }
+        }
+
+        if (elements.pagination) {
+            if (isMobile || (state.totalCards <= 3 && !isMobile)) {
+                elements.pagination.style.display = 'none';
+            } else {
+                elements.pagination.style.display = 'flex';
+            }
+        }
+    }
+
+    function goToSlide(index) {
+        const slideWidth = getSlideWidth();
+        state.currentOffset = index * slideWidth * config.cardsPerView;
+        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
+        updateSlider();
+    }
+
+    function slidePrev() {
+        const slideWidth = getSlideWidth();
+        state.currentOffset = Math.max(0, state.currentOffset - slideWidth * config.cardsPerView);
+        updateSlider();
+    }
+
+    function slideNext() {
+        const slideWidth = getSlideWidth();
+        state.currentOffset = Math.min(state.maxOffset, state.currentOffset + slideWidth * config.cardsPerView);
+        updateSlider();
+    }
+
+    // ========================
+    // TOUCH/SWIPE SUPPORT
+    // ========================
+    let touchState = {
+        startX: 0,
+        currentX: 0,
+        startOffset: 0,
+        isDragging: false
+    };
+
+    function initTouchSupport() {
+        const container = elements.sliderContainer;
+        if (!container) return;
+
+        container.addEventListener('touchstart', handleTouchStart, { passive: true });
+        container.addEventListener('touchmove', handleTouchMove, { passive: true });
+        container.addEventListener('touchend', handleTouchEnd, { passive: true });
+        container.addEventListener('touchcancel', handleTouchCancel, { passive: true });
+    }
+
+    function handleTouchStart(e) {
+        touchState.startX = e.touches[0].clientX;
+        touchState.currentX = touchState.startX;
+        touchState.startOffset = state.currentOffset;
+        touchState.isDragging = true;
+        elements.slider.style.transition = 'none';
+    }
+
+    function handleTouchMove(e) {
+        if (!touchState.isDragging) return;
+
+        touchState.currentX = e.touches[0].clientX;
+        const diff = touchState.startX - touchState.currentX;
+
+        let newOffset = touchState.startOffset + diff;
+
+        // Add resistance at boundaries
+        if (newOffset < 0) {
+            newOffset = diff * 0.3;
+        } else if (newOffset > state.maxOffset) {
+            const beyondEnd = newOffset - state.maxOffset;
+            newOffset = state.maxOffset + (beyondEnd * 0.3);
+        }
+
+        elements.slider.style.transform = `translateX(-${newOffset}px)`;
+    }
+
+    function handleTouchEnd(e) {
+        if (!touchState.isDragging) return;
+
+        touchState.isDragging = false;
+        elements.slider.style.transition = 'transform 0.5s ease';
+
+        const touchEndX = e.changedTouches[0].clientX;
+        const diff = touchState.startX - touchEndX;
+        const slideWidth = getSlideWidth();
+        const draggedOffset = touchState.startOffset + diff;
+
+        let targetSlide = Math.round(draggedOffset / slideWidth);
+
+        // Velocity-based snap
+        const velocity = diff / (Date.now() - e.timeStamp);
+        if (Math.abs(velocity) > 0.5) {
+            if (velocity > 0) {
+                targetSlide = Math.ceil(draggedOffset / slideWidth);
+            } else {
+                targetSlide = Math.floor(draggedOffset / slideWidth);
+            }
+        }
+
+        let finalOffset = targetSlide * slideWidth;
+        finalOffset = Math.max(0, Math.min(finalOffset, state.maxOffset));
+
+        const cardIndex = Math.round(finalOffset / slideWidth);
+        state.currentOffset = cardIndex * slideWidth;
+        state.currentOffset = Math.max(0, Math.min(state.currentOffset, state.maxOffset));
+
+        updateSlider();
+    }
+
+    function handleTouchCancel() {
+        if (!touchState.isDragging) return;
+
+        touchState.isDragging = false;
+        elements.slider.style.transition = 'transform 0.5s ease';
+        updateSlider();
+    }
+
+    // ========================
+    // MODAL HANDLING
+    // ========================
+    function initModal() {
+        if (!elements.modal) return;
+
+        // Close handlers
+        if (elements.modalBackdrop) {
+            elements.modalBackdrop.addEventListener('click', closeModal);
+        }
+        if (elements.modalClose) {
+            elements.modalClose.addEventListener('click', closeModal);
+        }
+        if (elements.modalSubscribeBtn) {
+            elements.modalSubscribeBtn.addEventListener('click', closeModal);
+        }
+
+        // Expandable sections
+        document.querySelectorAll('.hoffer-expandable-header').forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.closest('.hoffer-expandable-section');
+                const isCurrentlyActive = section.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.hoffer-expandable-section').forEach(s => {
+                    s.classList.remove('active');
+                });
+
+                // Toggle current
+                if (!isCurrentlyActive) {
+                    section.classList.add('active');
+                }
+            });
+        });
+
+        // Card click delegation
+        if (elements.slider) {
+            elements.slider.addEventListener('click', handleCardClick);
+        }
+    }
+
+    function handleCardClick(e) {
+        const card = e.target.closest('.hoffer-package-card');
+        if (!card) return;
+
+        const cardData = {
+            name: card.dataset.name || '',
+            duration: card.dataset.duration || '',
+            extra: card.dataset.extra || '',
+            originalPrice: card.dataset.originalPrice || '',
+            finalPrice: card.dataset.finalPrice || '',
+            promo: card.dataset.promo || ''
+        };
+
+        openModal(cardData);
+    }
+
+    function openModal(cardData) {
+        if (!elements.modal) return;
+
+        // Update content
+        if (elements.modalTitle) elements.modalTitle.textContent = cardData.name;
+        if (elements.modalTitlePrice) elements.modalTitlePrice.textContent = cardData.finalPrice;
+        if (elements.modalTitleValidity) elements.modalTitleValidity.textContent = cardData.duration;
+        if (elements.modalExtra) elements.modalExtra.textContent = cardData.extra;
+
+        // Show/hide promo badge
+        if (elements.modalPromoBadge) {
+            if (cardData.promo) {
+                elements.modalPromoBadge.style.display = 'inline-block';
+                elements.modalPromoBadge.textContent = cardData.promo;
+            } else {
+                elements.modalPromoBadge.style.display = 'none';
+            }
+        }
+
+        // Reset expandable sections
+        document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Show modal
+        elements.modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        if (!elements.modal) return;
+
+        elements.modal.classList.remove('active');
+        document.body.style.overflow = '';
+
+        // Reset expandable sections
+        document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
+            section.classList.remove('active');
+        });
+    }
+
+    // ========================
+    // KEYBOARD NAVIGATION
+    // ========================
+    function initKeyboardNavigation() {
+        document.addEventListener('keydown', (e) => {
+            // Modal close on Escape
+            if (e.key === 'Escape' && elements.modal?.classList.contains('active')) {
+                closeModal();
+                return;
+            }
+
+            // Slider navigation
+            if (e.key === 'ArrowLeft' && elements.prevBtn && !elements.prevBtn.disabled) {
+                slidePrev();
+            } else if (e.key === 'ArrowRight' && elements.nextBtn && !elements.nextBtn.disabled) {
+                slideNext();
+            }
+        });
+    }
+
+    // ========================
+    // WINDOW RESIZE HANDLER
+    // ========================
+    function initResizeHandler() {
+        window.addEventListener('resize', () => {
+            // Recalculate
+            const slideWidth = getSlideWidth();
+            state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
+
+            // Reset position if needed
+            if (state.currentOffset > state.maxOffset) {
+                state.currentOffset = Math.max(0, state.maxOffset);
+            }
+
+            updateSlider();
+        });
+    }
+
+    // ========================
+    // INITIALIZATION
+    // ========================
+    function init() {
+        // Initialize all components
+        initCategoryTabs();
+        initChips();
+        initTouchSupport();
+        initModal();
+        initKeyboardNavigation();
+        initResizeHandler();
+
+        // Navigation buttons
+        if (elements.prevBtn) {
+            elements.prevBtn.addEventListener('click', slidePrev);
+        }
+        if (elements.nextBtn) {
+            elements.nextBtn.addEventListener('click', slideNext);
+        }
+
+        // Initial setup
+        updateCardGroupsVisibility();
+        updateSlider();
+
+        // Set initial background from first tab
+        const firstTab = elements.tabsContainer?.querySelector('.hoffer-tab-item[data-background]');
+        if (firstTab) {
+            updateBackground(firstTab.dataset.background);
+        }
+    }
+
+    // Start when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+})();

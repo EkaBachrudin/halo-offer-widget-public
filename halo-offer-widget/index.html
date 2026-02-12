@@ -10,66 +10,143 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="hoffer-widget-container">
-        <!-- Loading Overlay -->
-        <div class="hoffer-loading-overlay" id="hofferLoadingOverlay">
-            <div class="hoffer-loading-spinner"></div>
-            <p class="hoffer-loading-text">Memuat...</p>
-        </div>
-        <div class="hoffer-widget-bg"></div>
-
+    <div class="hoffer-widget-container" data-hoffer-widget>
+        <div class="hoffer-widget-bg" data-hoffer-background></div>
         <div class="hoffer-widget-content">
-            <!-- Title -->
             <h1 class="hoffer-widget-title">Pilih Layanan Digital Premium Kamu</h1>
 
             <!-- Category Tabs -->
-            <div class="hoffer-category-tabs">
-                <!-- Tabs will be rendered dynamically by JavaScript -->
+            <div class="hoffer-category-tabs" data-hoffer-tabs>
+                <div class="hoffer-tab-item active" data-category="video" data-background="assets/backgrounds/video.png">
+                    <div class="hoffer-tab-icon"><img src="assets/category-icons/moves.svg" alt="Video"></div>
+                    <span class="hoffer-tab-label">Video</span>
+                </div>
+                <div class="hoffer-tab-item" data-category="games" data-background="assets/backgrounds/games.png">
+                    <div class="hoffer-tab-icon"><img src="assets/category-icons/games.svg" alt="Games"></div>
+                    <span class="hoffer-tab-label">Games</span>
+                </div>
+                <div class="hoffer-tab-item" data-category="music" data-background="assets/backgrounds/music.png">
+                    <div class="hoffer-tab-icon"><img src="assets/category-icons/musics.svg" alt="Music"></div>
+                    <span class="hoffer-tab-label">Music</span>
+                </div>
+                <div class="hoffer-tab-item" data-category="others" data-background="assets/backgrounds/others.png">
+                    <div class="hoffer-tab-icon"><img src="assets/category-icons/others.svg" alt="Layanan Lainnya"></div>
+                    <span class="hoffer-tab-label">Layanan Lainnya</span>
+                </div>
             </div>
 
-            <!-- Filter Sub Category (dynamically generated) -->
-            <div class="hoffer-filter-chips">
-                <!-- Chips will be rendered by JavaScript -->
+            <!-- Filter Chips - Video -->
+            <div class="hoffer-filter-chips hoffer-active" data-hoffer-chips data-category="video">
+                <div class="hoffer-chip active" data-chip="netflix">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/netflix.svg" alt="Netflix"></div>
+                    <span class="hoffer-chip-label">Netflix</span>
+                </div>
+                <div class="hoffer-chip" data-chip="hotstar">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/disney_hotstar.svg" alt="Disney+ Hotstar"></div>
+                    <span class="hoffer-chip-label">Disney+ Hotstar</span>
+                </div>
+                <div class="hoffer-chip" data-chip="vidio">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/video.svg" alt="Vidio"></div>
+                    <span class="hoffer-chip-label">Vidio</span>
+                </div>
+                <div class="hoffer-chip" data-chip="wetv">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/video.svg" alt="WeTV"></div>
+                    <span class="hoffer-chip-label">WeTV</span>
+                </div>
+                <div class="hoffer-chip" data-chip="prime">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/prime_video.svg" alt="Prime Video"></div>
+                    <span class="hoffer-chip-label">Prime Video</span>
+                </div>
+            </div>
+
+            <!-- Filter Chips - Games -->
+            <div class="hoffer-filter-chips" data-hoffer-chips data-category="games">
+                <div class="hoffer-chip active" data-chip="mobile-legends">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/mobile_lagend.svg" alt="Mobile Legends"></div>
+                    <span class="hoffer-chip-label">Mobile Legends</span>
+                </div>
+                <div class="hoffer-chip" data-chip="pubg">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/garena.svg" alt="PUBG Mobile"></div>
+                    <span class="hoffer-chip-label">PUBG Mobile</span>
+                </div>
+                <div class="hoffer-chip" data-chip="freefire">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/free_fire.svg" alt="Free Fire"></div>
+                    <span class="hoffer-chip-label">Free Fire</span>
+                </div>
+                <div class="hoffer-chip" data-chip="genshin">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/roblox.svg" alt="Genshin Impact"></div>
+                    <span class="hoffer-chip-label">Genshin Impact</span>
+                </div>
+            </div>
+
+            <!-- Filter Chips - Music -->
+            <div class="hoffer-filter-chips" data-hoffer-chips data-category="music">
+                <div class="hoffer-chip active" data-chip="spotify">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/spotify.svg" alt="Spotify"></div>
+                    <span class="hoffer-chip-label">Spotify</span>
+                </div>
+                <div class="hoffer-chip" data-chip="joox">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/langit_musik.svg" alt="JOOX"></div>
+                    <span class="hoffer-chip-label">JOOX</span>
+                </div>
+                <div class="hoffer-chip" data-chip="apple-music">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/youtube.svg" alt="Apple Music"></div>
+                    <span class="hoffer-chip-label">Apple Music</span>
+                </div>
+                <div class="hoffer-chip" data-chip="youtube-music">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/smule.svg" alt="YouTube Music"></div>
+                    <span class="hoffer-chip-label">YouTube Music</span>
+                </div>
+            </div>
+
+            <!-- Filter Chips - Others -->
+            <div class="hoffer-filter-chips" data-hoffer-chips data-category="others">
+                <div class="hoffer-chip active" data-chip="canva">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/gpt.svg" alt="Canva"></div>
+                    <span class="hoffer-chip-label">Canva</span>
+                </div>
+                <div class="hoffer-chip" data-chip="adobe">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/zoom.svg" alt="Adobe CC"></div>
+                    <span class="hoffer-chip-label">Adobe CC</span>
+                </div>
+                <div class="hoffer-chip" data-chip="norton">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/norton.svg" alt="Norton"></div>
+                    <span class="hoffer-chip-label">Norton</span>
+                </div>
+                <div class="hoffer-chip" data-chip="kompas">
+                    <div class="hoffer-chip-icon"><img src="assets/sub-category-icons/kompas.svg" alt="Kompas"></div>
+                    <span class="hoffer-chip-label">Kompas</span>
+                </div>
             </div>
 
             <!-- Cards Slider -->
             <div class="hoffer-cards-wrapper">
                 <div class="hoffer-cards-container">
-                    <div class="hoffer-cards-slider" id="hofferCardsSlider">
-                        <!-- Cards will be rendered by JavaScript -->
+                    <div class="hoffer-cards-slider" id="hofferCardsSlider" data-hoffer-slider>
+                        <!-- AMBIL DATA DARI card-container.html -->
                     </div>
                 </div>
-
-                <!-- Navigation Arrows -->
                 <div class="hoffer-nav-arrows">
                     <button class="hoffer-nav-arrow hoffer-prev" id="hofferPrevBtn" disabled>
-                      <img src="https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/leftArrowActive.png" alt="left-arrow">
+                        <img src="https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/leftArrowActive.png" alt="left-arrow">
                     </button>
                     <button class="hoffer-nav-arrow hoffer-next" id="hofferNextBtn">
-                       <img src="https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/RightArrowActive.png" alt="right-arrow">
+                        <img src="https://www.telkomsel.com/themes/custom/telkomsel/assets/img/revamp/icons/RightArrowActive.png" alt="right-arrow">
                     </button>
                 </div>
             </div>
 
-            <!-- Pagination -->
-            <div class="hoffer-pagination" id="hofferPagination">
-                <!-- Pagination dots will be generated by JS -->
-            </div>
+            <div class="hoffer-pagination" id="hofferPagination"></div>
         </div>
     </div>
 
-    <!-- Subscription Modal/Bottom Sheet -->
+    <!-- Subscription Modal -->
     <div class="hoffer-subscription-modal" id="hofferSubscriptionModal">
         <div class="hoffer-modal-backdrop" id="hofferModalBackdrop"></div>
         <div class="hoffer-modal-container">
-            <!-- Close Button -->
             <button class="hoffer-modal-close" id="hofferModalClose">
-                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
+                <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
             </button>
-
-            <!-- Modal Header -->
             <div class="hoffer-modal-header">
                 <div class="hoffer-modal-promo-badge" id="hofferModalPromoBadge">PROMO</div>
                 <h2 class="hoffer-modal-title" id="hofferModalTitle">Netflix Premium</h2>
@@ -77,31 +154,23 @@
                     <h3 class="hoffer-modal-title-price">Rp 186.000</h3>
                     <div class="hoffer-modal-title-validity">30-day validity</div>
                 </div>
-
             </div>
-
-            <!-- Data Plan Section -->
             <div class="hoffer-modal-data-plan">
                 <div class="hoffer-data-plan-row">
                     <div class="hoffer-data-plan-label">
-                        <img src="assets/components/globe.svg" alt="icon-offer" style="width: 24px; height: 24px;">
+                        <img src="assets/components/globe.svg" alt="icon-offer">
                         <span>INTERNET</span>
                     </div>
                     <span class="hoffer-data-plan-value" id="hofferModalExtra">Extra 2 GB</span>
                 </div>
             </div>
-
-            <!-- Expandable Sections -->
             <div class="hoffer-modal-expandable">
-                <!-- Detail Paket -->
                 <div class="hoffer-expandable-section">
                     <button class="hoffer-expandable-header" data-expand="details">
                         <span>Detail Paket</span>
-                        <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    <div class="hoffer-expandable-content" id="hofferDetailsContent">
+                    <div class="hoffer-expandable-content">
                         <ul class="hoffer-detail-list">
                             <li>Akses unlimited ke semua konten premium</li>
                             <li>Kualitas streaming Ultra HD 4K</li>
@@ -110,16 +179,12 @@
                         </ul>
                     </div>
                 </div>
-
-                <!-- Syarat & Ketentuan -->
                 <div class="hoffer-expandable-section">
                     <button class="hoffer-expandable-header" data-expand="terms">
                         <span>Syarat & Ketentuan</span>
-                        <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none">
-                            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
+                        <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </button>
-                    <div class="hoffer-expandable-content" id="hofferTermsContent">
+                    <div class="hoffer-expandable-content">
                         <ul class="hoffer-terms-list">
                             <li>Paket berlaku sesuai masa aktif yang dipilih</li>
                             <li>Kuota internet berlaku 24 jam</li>
@@ -129,10 +194,8 @@
                     </div>
                 </div>
             </div>
-
-            <!-- CTA Button -->
             <div class="hoffer-modal-cta">
-                <a href="..." class="hoffer-modal-subscribe-btn" id="hofferModalSubscribeBtn">Berlangganan</a>
+                <a href="#" class="hoffer-modal-subscribe-btn" id="hofferModalSubscribeBtn">Berlangganan</a>
             </div>
         </div>
     </div>
