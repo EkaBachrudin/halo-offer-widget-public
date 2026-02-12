@@ -26,6 +26,7 @@
         currentCategory: 'video',
         currentChip: 'netflix',
         currentOffset: 0,
+        currentSlide: 0,  // Track current slide index explicitly
         totalCards: 0,
         maxOffset: 0
     };
@@ -103,6 +104,7 @@
                 // Update state
                 state.currentCategory = category;
                 state.currentOffset = 0;
+                state.currentSlide = 0;
 
                 // Update background
                 updateBackground(background);
@@ -151,6 +153,7 @@
     function activateChip(chipId) {
         state.currentChip = chipId;
         state.currentOffset = 0;
+        state.currentSlide = 0;
 
         // Update active state on chips within current category
         const currentChipsContainer = document.querySelector(`[data-hoffer-chips][data-category="${state.currentCategory}"]`);
@@ -232,14 +235,13 @@
         if (!elements.pagination) return;
 
         const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
-        const currentSlide = Math.round(state.currentOffset / (getSlideWidth() * config.cardsPerView));
 
         elements.pagination.innerHTML = '';
 
         for (let i = 0; i < totalSlides; i++) {
             const dot = document.createElement('div');
-            dot.className = 'hoffer-pagination-dot' + (i === currentSlide ? ' active' : '');
-            dot.style.width = i === currentSlide ? '32px' : '8px';
+            dot.className = 'hoffer-pagination-dot' + (i === state.currentSlide ? ' active' : '');
+            dot.style.width = i === state.currentSlide ? '32px' : '8px';
             dot.style.height = '8px';
             dot.addEventListener('click', () => goToSlide(i));
             elements.pagination.appendChild(dot);
@@ -267,21 +269,29 @@
     }
 
     function goToSlide(index) {
+        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        state.currentSlide = Math.max(0, Math.min(index, totalSlides - 1));
+
         const slideWidth = getSlideWidth();
-        state.currentOffset = index * slideWidth * config.cardsPerView;
+        state.currentOffset = state.currentSlide * slideWidth;
         state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
     function slidePrev() {
         const slideWidth = getSlideWidth();
-        state.currentOffset = Math.max(0, state.currentOffset - slideWidth * config.cardsPerView);
+        state.currentSlide = Math.max(0, state.currentSlide - 1);
+        state.currentOffset = state.currentSlide * slideWidth;
+        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
     function slideNext() {
+        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        state.currentSlide = Math.min(state.currentSlide + 1, totalSlides - 1);
         const slideWidth = getSlideWidth();
-        state.currentOffset = Math.min(state.maxOffset, state.currentOffset + slideWidth * config.cardsPerView);
+        state.currentOffset = state.currentSlide * slideWidth;
+        state.currentOffset = Math.min(state.currentOffset, state.maxOffset);
         updateSlider();
     }
 
@@ -363,8 +373,8 @@
         let finalOffset = targetSlide * slideWidth;
         finalOffset = Math.max(0, Math.min(finalOffset, state.maxOffset));
 
-        const cardIndex = Math.round(finalOffset / slideWidth);
-        state.currentOffset = cardIndex * slideWidth;
+        state.currentSlide = Math.round(finalOffset / slideWidth);
+        state.currentOffset = state.currentSlide * slideWidth;
         state.currentOffset = Math.max(0, Math.min(state.currentOffset, state.maxOffset));
 
         updateSlider();
@@ -527,10 +537,16 @@
             const slideWidth = getSlideWidth();
             state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
 
+            // Recalculate current slide based on current offset
+            state.currentSlide = Math.round(state.currentOffset / slideWidth);
+
             // Reset position if needed
-            if (state.currentOffset > state.maxOffset) {
-                state.currentOffset = Math.max(0, state.maxOffset);
+            if (state.currentSlide > Math.ceil(state.totalCards / config.cardsPerView) - 1) {
+                state.currentSlide = Math.max(0, Math.ceil(state.totalCards / config.cardsPerView) - 1);
             }
+
+            state.currentOffset = state.currentSlide * slideWidth;
+            state.currentOffset = Math.max(0, Math.min(state.currentOffset, state.maxOffset));
 
             updateSlider();
         });

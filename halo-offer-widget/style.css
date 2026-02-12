@@ -361,6 +361,7 @@ body {
 }
 
 .hoffer-package-price {
+    min-height: 54px;
     display: flex;
     flex-direction: column;
     gap: 4px;
