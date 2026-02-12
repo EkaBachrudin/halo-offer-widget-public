@@ -220,9 +220,13 @@
             }
         });
 
-        // Update navigation buttons
-        if (elements.prevBtn) elements.prevBtn.disabled = state.currentOffset <= 0;
-        if (elements.nextBtn) elements.nextBtn.disabled = state.currentOffset >= state.maxOffset;
+        // Update navigation buttons - use slide-based logic for more accuracy
+        const totalSlides = Math.ceil(state.totalCards / config.cardsPerView);
+        const isAtFirstSlide = state.currentSlide <= 0;
+        const isAtLastSlide = state.currentSlide >= totalSlides - 1 || state.totalCards <= config.cardsPerView;
+
+        if (elements.prevBtn) elements.prevBtn.disabled = isAtFirstSlide;
+        if (elements.nextBtn) elements.nextBtn.disabled = isAtLastSlide;
 
         // Update pagination
         updatePagination();
