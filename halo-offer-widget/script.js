@@ -51,7 +51,7 @@
         modalTitle: document.getElementById('hofferModalTitle'),
         modalTitlePrice: document.querySelector('.hoffer-modal-title-price'),
         modalTitleValidity: document.querySelector('.hoffer-modal-title-validity'),
-        modalExtra: document.getElementById('hofferModalExtra'),
+        modalDataPlan: document.getElementById('hofferModalDataPlan'),
         modalPromoBadge: document.getElementById('hofferModalPromoBadge'),
         modalDetails: document.getElementById('hofferModalDetails'),
         modalTerms: document.getElementById('hofferModalTerms')
@@ -442,10 +442,20 @@
         const card = e.target.closest('.hoffer-package-card');
         if (!card) return;
 
+        // Parse data-extra as JSON
+        let extraData = [];
+        try {
+            extraData = card.dataset.extra ? JSON.parse(card.dataset.extra) : [];
+        } catch (error) {
+            console.warn('Failed to parse data-extra JSON:', error);
+            // Fallback to simple string format if JSON parsing fails
+            extraData = [{ key: 'INTERNET', value: card.dataset.extra || '' }];
+        }
+
         const cardData = {
             name: card.dataset.name || '',
             duration: card.dataset.duration || '',
-            extra: card.dataset.extra || '',
+            extra: extraData,
             originalPrice: card.dataset.originalPrice || '',
             finalPrice: card.dataset.finalPrice || '',
             promo: card.dataset.promo || '',
@@ -463,7 +473,9 @@
         if (elements.modalTitle) elements.modalTitle.textContent = cardData.name;
         if (elements.modalTitlePrice) elements.modalTitlePrice.textContent = cardData.finalPrice;
         if (elements.modalTitleValidity) elements.modalTitleValidity.textContent = cardData.duration;
-        if (elements.modalExtra) elements.modalExtra.textContent = cardData.extra;
+
+        // Render dynamic data plan rows
+        renderDataPlanRows(cardData.extra);
 
         // Show/hide promo badge
         if (elements.modalPromoBadge) {
@@ -502,6 +514,67 @@
         // Show modal
         elements.modal.classList.add('active');
         document.body.style.overflow = 'hidden';
+    }
+
+    // Render dynamic data plan rows in modal
+    function renderDataPlanRows(extraData) {
+        if (!elements.modalDataPlan) return;
+
+        // Clear existing content
+        elements.modalDataPlan.innerHTML = '';
+
+        // If no data provided, show default row
+        if (!extraData || extraData.length === 0) {
+            extraData = [{ icon: 'assets/components/globe.svg', key: 'INTERNET', value: '-' }];
+        }
+
+        // Render each data row - icon is now provided directly in the data
+        extraData.forEach(item => {
+            const iconSrc = item.icon || 'assets/components/globe.svg';
+            const rowHtml = `
+                <div class="hoffer-data-plan-row">
+                    <div class="hoffer-data-plan-label">
+                        <img src="${iconSrc}" alt="icon-offer">
+                        <span>${item.key}</span>
+                    </div>
+                    <span class="hoffer-data-plan-value">${item.value}</span>
+                </div>
+            `;
+            elements.modalDataPlan.innerHTML += rowHtml;
+        });
+    }
+
+    // Get display text for card from extra data
+    function getExtraDisplayText(extraData) {
+        if (!extraData || extraData.length === 0) return '';
+
+        // If multiple items, show as "Value 1 + Value 2"
+        if (extraData.length === 1) {
+            return extraData[0].value;
+        } else if (extraData.length === 2) {
+            return `${extraData[0].value} + ${extraData[1].value}`;
+        } else {
+            return `${extraData[0].value} + ${extraData.length - 1} more`;
+        }
+    }
+
+    // Initialize card displays based on data-extra attribute
+    function initCardDisplays() {
+        document.querySelectorAll('.hoffer-package-card').forEach(card => {
+            const extraElement = card.querySelector('.hoffer-package-extra');
+            if (!extraElement) return;
+
+            let extraData = [];
+            try {
+                extraData = card.dataset.extra ? JSON.parse(card.dataset.extra) : [];
+            } catch (error) {
+                // If parsing fails, use the text content as-is
+                return;
+            }
+
+            // Update the display text
+            extraElement.textContent = getExtraDisplayText(extraData);
+        });
     }
 
     function closeModal() {
@@ -582,6 +655,7 @@
         }
 
         // Initial setup
+        initCardDisplays();
         updateCardGroupsVisibility();
         updateSlider();
 
