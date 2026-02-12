@@ -37,7 +37,6 @@
         widget: document.querySelector('[data-hoffer-widget]'),
         tabsContainer: document.querySelector('[data-hoffer-tabs]'),
         chipsContainers: document.querySelectorAll('[data-hoffer-chips]'),
-        slider: document.querySelector('[data-hoffer-slider]'),
         background: document.querySelector('[data-hoffer-background]'),
         prevBtn: document.getElementById('hofferPrevBtn'),
         nextBtn: document.getElementById('hofferNextBtn'),
@@ -57,10 +56,23 @@
         modalTerms: document.getElementById('hofferModalTerms')
     };
 
+    // Get the active slider based on current category and chip
+    function getActiveSlider() {
+        const activeGroup = getActiveCardGroup();
+        return activeGroup ? activeGroup.querySelector('[data-hoffer-slider]') : null;
+    }
+
     // ========================
     // UTILITY FUNCTIONS
     // ========================
     function getCardWidth() {
+        // Get card from active slider to ensure correct width
+        const activeSlider = getActiveSlider();
+        if (activeSlider) {
+            const card = activeSlider.querySelector('.hoffer-package-card');
+            if (card) return card.offsetWidth;
+        }
+        // Fallback to any card in DOM
         const card = document.querySelector('.hoffer-package-card');
         return card ? card.offsetWidth : config.cardWidth;
     }
@@ -188,11 +200,22 @@
             config.cardsPerView = 3;
         }
 
-        // Update max offset
+        // Update max offset based on current active group's cards
         state.maxOffset = slideWidth * Math.max(0, state.totalCards - config.cardsPerView);
 
-        // Apply transform
-        elements.slider.style.transform = `translateX(-${state.currentOffset}px)`;
+        // Apply transform to active slider (reset all sliders first, then apply to active)
+        const allSliders = document.querySelectorAll('[data-hoffer-slider]');
+        const activeSlider = getActiveSlider();
+
+        allSliders.forEach(slider => {
+            if (slider === activeSlider) {
+                // Apply current offset to active slider
+                slider.style.transform = `translateX(-${state.currentOffset}px)`;
+            } else {
+                // Reset inactive sliders to 0
+                slider.style.transform = 'translateX(0)';
+            }
+        });
 
         // Update navigation buttons
         if (elements.prevBtn) elements.prevBtn.disabled = state.currentOffset <= 0;
@@ -287,7 +310,8 @@
         touchState.currentX = touchState.startX;
         touchState.startOffset = state.currentOffset;
         touchState.isDragging = true;
-        elements.slider.style.transition = 'none';
+        const activeSlider = getActiveSlider();
+        if (activeSlider) activeSlider.style.transition = 'none';
     }
 
     function handleTouchMove(e) {
@@ -306,14 +330,18 @@
             newOffset = state.maxOffset + (beyondEnd * 0.3);
         }
 
-        elements.slider.style.transform = `translateX(-${newOffset}px)`;
+        const activeSlider = getActiveSlider();
+        if (activeSlider) {
+            activeSlider.style.transform = `translateX(-${newOffset}px)`;
+        }
     }
 
     function handleTouchEnd(e) {
         if (!touchState.isDragging) return;
 
         touchState.isDragging = false;
-        elements.slider.style.transition = 'transform 0.5s ease';
+        const activeSlider = getActiveSlider();
+        if (activeSlider) activeSlider.style.transition = 'transform 0.5s ease';
 
         const touchEndX = e.changedTouches[0].clientX;
         const diff = touchState.startX - touchEndX;
@@ -346,7 +374,8 @@
         if (!touchState.isDragging) return;
 
         touchState.isDragging = false;
-        elements.slider.style.transition = 'transform 0.5s ease';
+        const activeSlider = getActiveSlider();
+        if (activeSlider) activeSlider.style.transition = 'transform 0.5s ease';
         updateSlider();
     }
 
@@ -385,10 +414,10 @@
             });
         });
 
-        // Card click delegation
-        if (elements.slider) {
-            elements.slider.addEventListener('click', handleCardClick);
-        }
+        // Card click delegation - add to all sliders
+        document.querySelectorAll('[data-hoffer-slider]').forEach(slider => {
+            slider.addEventListener('click', handleCardClick);
+        });
     }
 
     function handleCardClick(e) {
