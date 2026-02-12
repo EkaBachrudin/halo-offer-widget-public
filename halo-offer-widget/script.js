@@ -440,7 +440,7 @@
 
     function openModal(cardData) {
         if (!elements.modal) return;
-
+        elements.modalPromoBadge.style.display = 'flex';
         // Update content
         if (elements.modalTitle) elements.modalTitle.textContent = cardData.name;
         if (elements.modalTitlePrice) elements.modalTitlePrice.textContent = cardData.finalPrice;
