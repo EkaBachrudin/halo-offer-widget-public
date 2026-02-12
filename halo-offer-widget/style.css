@@ -588,6 +588,9 @@ body {
 }
 
 .hoffer-modal-promo-badge {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: absolute;
     left: 0;
     top: 20px;

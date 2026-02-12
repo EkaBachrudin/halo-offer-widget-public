@@ -421,7 +421,6 @@
         // Show/hide promo badge
         if (elements.modalPromoBadge) {
             if (cardData.promo) {
-                elements.modalPromoBadge.style.display = 'inline-block';
                 elements.modalPromoBadge.textContent = cardData.promo;
             } else {
                 elements.modalPromoBadge.style.display = 'none';
