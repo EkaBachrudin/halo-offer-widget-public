@@ -460,7 +460,8 @@
             finalPrice: card.dataset.finalPrice || '',
             promo: card.dataset.promo || '',
             details: card.dataset.details || '',
-            terms: card.dataset.terms || ''
+            terms: card.dataset.terms || '',
+            href: card.dataset.href || '#'
         };
 
         openModal(cardData);
@@ -468,6 +469,12 @@
 
     function openModal(cardData) {
         if (!elements.modal) return;
+
+        // Update subscribe button href
+        if (elements.modalSubscribeBtn) {
+            elements.modalSubscribeBtn.href = cardData.href;
+        }
+
         elements.modalPromoBadge.style.display = 'flex';
         // Update content
         if (elements.modalTitle) elements.modalTitle.textContent = cardData.name;
