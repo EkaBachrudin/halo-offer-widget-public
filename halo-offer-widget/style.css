@@ -901,6 +901,10 @@ body {
 
 /* Desktop Popup Enhancement */
 @media (min-width: 769px) {
+    .hoffer-modal-container {
+        border-radius: 0 0 24px 24px;
+    }
+
     .hoffer-subscription-modal::before {
         content: '';
         position: absolute;
