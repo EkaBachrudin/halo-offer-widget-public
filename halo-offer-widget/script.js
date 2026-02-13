@@ -578,9 +578,6 @@
                 // If parsing fails, use the text content as-is
                 return;
             }
-
-            // Update the display text
-            extraElement.textContent = getExtraDisplayText(extraData);
         });
     }
 
