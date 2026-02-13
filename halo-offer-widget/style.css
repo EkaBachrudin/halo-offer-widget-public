@@ -350,6 +350,10 @@ body {
     font-weight: 400;
     line-height: 24px;
     color: #181c21;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 50ch;
 }
 
 .hoffer-package-duration {
