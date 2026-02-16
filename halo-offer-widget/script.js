@@ -530,8 +530,6 @@
 
     // Render expandable sections dynamically in modal
     function renderExpandableSections(expandableData) {
-        console.log('renderExpandableSections called with:', expandableData);
-        console.log('modalExpandable element:', elements.modalExpandable);
 
         if (!elements.modalExpandable) {
             console.error('modalExpandable element not found!');
