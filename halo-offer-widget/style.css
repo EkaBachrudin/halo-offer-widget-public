@@ -639,7 +639,7 @@ body {
 
 .hoffer-modal-title-price{
     margin: 0 !important;
-    font-weight: 700;
+    font-weight: 700 !important;
     font-size: 32px;
     color: white;
 }
@@ -729,8 +729,8 @@ body {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-size: 14px;
-    font-weight: 700;
+    font-size: 14px !important;
+    font-weight: 700 !important;
 }
 
 .hoffer-globe-icon {
@@ -740,8 +740,8 @@ body {
 }
 
 .hoffer-data-plan-value {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 24px !important;
+    font-weight: 700 !important;
     color: #181c21;
 }
 
@@ -768,8 +768,8 @@ body {
 }
 
 .hoffer-expandable-header span {
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 15px !important;
+    font-weight: 600 !important;
     color: #181c21;
 }
 
@@ -833,9 +833,9 @@ body {
     background: #ED0226;
     border: none;
     border-radius: 24px;
-    color: #ffffff;
-    font-size: 16px;
-    font-weight: 700;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
     cursor: pointer;
     transition: all 0.3s ease;
     text-decoration: none;
