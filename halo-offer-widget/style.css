@@ -548,6 +548,7 @@ body {
 }
 
 .hoffer-modal-container {
+    font-family: 'Poppins', sans-serif !important;
     position: relative;
     width: 100%;
     max-width: 720px;
