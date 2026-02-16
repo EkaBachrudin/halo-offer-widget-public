@@ -622,7 +622,7 @@ body {
 }
 
 .hoffer-modal-title {
-    font-family: 'telkomsel-bartik-Bold';
+    font-family: 'telkomsel-bartik-Bold' !important;
     font-size: 18px !important;
     margin-bottom: 0 !important;
     font-weight: 700 !important;
@@ -878,7 +878,7 @@ body {
     }
 
     .hoffer-modal-title {
-        font-size: 16px;
+        font-size: 16px !important;
     }
 
     .hoffer-modal-pricing {
