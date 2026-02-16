@@ -53,8 +53,7 @@
         modalTitleValidity: document.querySelector('.hoffer-modal-title-validity'),
         modalDataPlan: document.getElementById('hofferModalDataPlan'),
         modalPromoBadge: document.getElementById('hofferModalPromoBadge'),
-        modalDetails: document.getElementById('hofferModalDetails'),
-        modalTerms: document.getElementById('hofferModalTerms')
+        modalExpandable: document.getElementById('hofferModalExpandable')
     };
 
     // Get the active slider based on current category and chip
@@ -414,28 +413,10 @@
             elements.modalSubscribeBtn.addEventListener('click', closeModal);
         }
 
-        // Expandable sections
-        document.querySelectorAll('.hoffer-expandable-header').forEach(header => {
-            header.addEventListener('click', function() {
-                const section = this.closest('.hoffer-expandable-section');
-                const isCurrentlyActive = section.classList.contains('active');
-
-                // Close all
-                document.querySelectorAll('.hoffer-expandable-section').forEach(s => {
-                    s.classList.remove('active');
-                });
-
-                // Toggle current
-                if (!isCurrentlyActive) {
-                    section.classList.add('active');
-                }
-            });
-        });
-
-        // Card click delegation - add to all sliders
-        document.querySelectorAll('[data-hoffer-slider]').forEach(slider => {
-            slider.addEventListener('click', handleCardClick);
-        });
+        // Card click delegation - use event delegation on widget to handle dynamically added cards
+        if (elements.widget) {
+            elements.widget.addEventListener('click', handleCardClick);
+        }
     }
 
     function handleCardClick(e) {
@@ -459,10 +440,23 @@
             originalPrice: card.dataset.originalPrice || '',
             finalPrice: card.dataset.finalPrice || '',
             promo: card.dataset.promo || '',
-            details: card.dataset.details || '',
-            terms: card.dataset.terms || '',
+            expandable: [],
             href: card.dataset.href || '#'
         };
+
+        // Parse expandable sections
+        try {
+            if (card.dataset.expandable) {
+                cardData.expandable = JSON.parse(card.dataset.expandable);
+                console.log('Expandable data parsed:', cardData.expandable);
+            } else {
+                console.warn('No data-expandable attribute found on card');
+                cardData.expandable = [];
+            }
+        } catch (error) {
+            console.warn('Failed to parse data-expandable JSON:', error);
+            cardData.expandable = [];
+        }
 
         openModal(cardData);
     }
@@ -493,25 +487,8 @@
             }
         }
 
-        // Update Details section (supports HTML content)
-        if (elements.modalDetails) {
-            if (cardData.details) {
-                elements.modalDetails.innerHTML = cardData.details;
-            } else {
-                // Default content if no data provided
-                elements.modalDetails.innerHTML = `-`;
-            }
-        }
-
-        // Update Terms section (supports HTML content)
-        if (elements.modalTerms) {
-            if (cardData.terms) {
-                elements.modalTerms.innerHTML = cardData.terms;
-            } else {
-                // Default content if no data provided
-                elements.modalTerms.innerHTML = `-`;
-            }
-        }
+        // Render expandable sections dynamically
+        renderExpandableSections(cardData.expandable);
 
         // Reset expandable sections
         document.querySelectorAll('.hoffer-expandable-section').forEach(section => {
@@ -548,6 +525,65 @@
                 </div>
             `;
             elements.modalDataPlan.innerHTML += rowHtml;
+        });
+    }
+
+    // Render expandable sections dynamically in modal
+    function renderExpandableSections(expandableData) {
+        console.log('renderExpandableSections called with:', expandableData);
+        console.log('modalExpandable element:', elements.modalExpandable);
+
+        if (!elements.modalExpandable) {
+            console.error('modalExpandable element not found!');
+            return;
+        }
+
+        // Clear existing content
+        elements.modalExpandable.innerHTML = '';
+
+        // If no data provided, show default section
+        if (!expandableData || expandableData.length === 0) {
+            expandableData = [{ title: 'Informasi', content: '-' }];
+        }
+
+        // Render each expandable section
+        expandableData.forEach((item, index) => {
+            const sectionHtml = `
+                <div class="hoffer-expandable-section">
+                    <button class="hoffer-expandable-header" data-expand-index="${index}">
+                        <span>${item.title || 'Informasi'}</span>
+                        <svg class="hoffer-chevron" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </button>
+                    <div class="hoffer-expandable-content">${item.content || '-'}</div>
+                </div>
+            `;
+            elements.modalExpandable.innerHTML += sectionHtml;
+        });
+
+        // Re-attach event listeners to newly created headers
+        attachExpandableListeners();
+    }
+
+    // Attach event listeners to expandable headers
+    function attachExpandableListeners() {
+        const headers = document.querySelectorAll('.hoffer-expandable-header');
+        console.log('attachExpandableListeners: found', headers.length, 'headers');
+
+        headers.forEach(header => {
+            header.addEventListener('click', function() {
+                const section = this.closest('.hoffer-expandable-section');
+                const isCurrentlyActive = section.classList.contains('active');
+
+                // Close all
+                document.querySelectorAll('.hoffer-expandable-section').forEach(s => {
+                    s.classList.remove('active');
+                });
+
+                // Toggle current
+                if (!isCurrentlyActive) {
+                    section.classList.add('active');
+                }
+            });
         });
     }
 
