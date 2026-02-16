@@ -867,6 +867,16 @@ body {
         transform: translateY(0);
     }
 
+    .hoffer-modal-title-desc{
+        flex-wrap: wrap;
+        margin-bottom: 0 !important;
+        gap: 8px;
+    }
+
+    .hoffer-data-plan-value {
+        font-size: 16px !important;
+    }
+
     .hoffer-modal-close {
         top: 12px;
         right: 12px;
@@ -892,7 +902,7 @@ body {
     .hoffer-modal-data-plan {
         padding-left: 20px;
         padding-right: 20px;
-        padding-top: 212px;
+        padding-top: 244px;
     }
 
     .hoffer-modal-expandable {
