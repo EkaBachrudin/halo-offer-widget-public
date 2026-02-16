@@ -345,6 +345,7 @@ body {
 }
 
 .hoffer-package-name {
+    margin: 0 !important;
     z-index: 10;
     font-size: 16px;
     font-weight: 400;
@@ -357,6 +358,7 @@ body {
 }
 
 .hoffer-package-duration {
+    margin: 0 !important;
     font-size: 24px;
     font-weight: 600;
     line-height: 32px;
@@ -364,6 +366,7 @@ body {
 }
 
 .hoffer-package-extra {
+    margin: 0 !important;
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -532,6 +535,7 @@ body {
 }
 
 .hoffer-subscription-modal.active {
+    z-index: 99999;
     opacity: 1;
     visibility: visible;
 }
@@ -617,11 +621,12 @@ body {
 }
 
 .hoffer-modal-title {
-    font-size: 22px;
-    font-weight: 700;
+    font-size: 22px !important;
+    margin-bottom: 0 !important;
+    font-weight: 700 !important;
     color: #ffffff;
     line-height: 1.3;
-    margin-top: 16px;
+    margin-top: 16px !important;
 }
 
 .hoffer-modal-title-desc{
@@ -633,6 +638,7 @@ body {
 }
 
 .hoffer-modal-title-price{
+    margin: 0 !important;
     font-weight: 700;
     font-size: 32px;
     color: white;
