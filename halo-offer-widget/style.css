@@ -80,6 +80,7 @@ body {
 
 /* Title Section */
 .hoffer-widget-title {
+    margin: 0 !important;
     font-size: 32px;
     font-weight: 700;
     line-height: 48px;
