@@ -870,7 +870,8 @@ body {
     }
 
     .hoffer-modal-title-desc{
-        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: baseline;
         margin-bottom: 0 !important;
         gap: 8px;
     }
