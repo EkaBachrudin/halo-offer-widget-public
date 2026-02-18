@@ -728,6 +728,7 @@ body {
 }
 
 .hoffer-data-plan-label {
+    color: #001A41;
     text-transform: capitalize;
     display: flex;
     align-items: center;
@@ -773,7 +774,7 @@ body {
 .hoffer-expandable-header span {
     font-size: 15px !important;
     font-weight: 600 !important;
-    color: #181c21;
+    color: #001A41;
 }
 
 .hoffer-expandable-header .hoffer-chevron {
